@@ -1,0 +1,1730 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CraftConf 2026 — my schedule</title><style>
+:root{
+  --bg:#0d1117; --panel:#161b22; --panel2:#1c232c; --line:#2b3440;
+  --txt:#e6edf3; --dim:#9aa7b4; --faint:#6e7d8c;
+  --must:#ff5d5d; --high:#ffb443; --rel:#5ad19a; --maybe:#5aa9d1; --low:#48535f;
+  --accent:#7c9cff; --want:#5ad19a; --skip:#6e7d8c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);
+  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+header.top{padding:34px 28px 22px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#11171f,#0d1117)}
+header.top h1{margin:0 0 6px;font-size:26px;letter-spacing:-.3px}
+header.top .sub{color:var(--dim);font-size:14px;max-width:900px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px;font-size:12.5px;color:var(--dim)}
+.legend .b{display:inline-flex;align-items:center;gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.dot.must{background:var(--must)} .dot.high{background:var(--high)}
+.dot.rel{background:var(--rel)} .dot.maybe{background:var(--maybe)} .dot.low{background:var(--low)}
+nav.days{position:sticky;top:0;z-index:10;display:flex;gap:8px;padding:12px 28px;align-items:center;
+  background:rgba(13,17,23,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.days a{padding:7px 16px;border:1px solid var(--line);border-radius:20px;color:var(--txt);
+  font-weight:600;font-size:13.5px}
+nav.days a:hover{border-color:var(--accent)}
+nav.days .grow{flex:1}
+nav.days button{font:600 13px inherit;padding:7px 14px;border-radius:20px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--txt);cursor:pointer}
+nav.days button:hover{border-color:var(--accent)}
+nav.days button.primary{background:var(--accent);color:#0d1117;border-color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:8px 22px 90px}
+h2.day{font-size:20px;margin:38px 0 4px;padding-top:14px}
+.slot{margin:26px 0 0;border-top:1px solid var(--line);padding-top:18px}
+.slot-head{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.slot-time{font:600 14px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--accent);
+  background:var(--panel2);padding:4px 10px;border-radius:6px;white-space:nowrap}
+.slot-meta{color:var(--faint);font-size:12.5px}
+.cards{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:9px;
+  padding:14px 16px;transition:border-color .15s}
+.card:hover{border-color:var(--faint)}
+.card.must{border-left-color:var(--must)} .card.high{border-left-color:var(--high)}
+.card.rel{border-left-color:var(--rel)} .card.maybe{border-left-color:var(--maybe)}
+.card.low{border-left-color:var(--low);opacity:.72}
+.card.pick{box-shadow:0 0 0 1px rgba(124,156,255,.25)}
+.card.st-must{opacity:1;border-left-color:var(--must)}
+.card.st-want{opacity:1;border-left-color:var(--want)}
+.card.st-skip{opacity:.4}
+.crow{display:flex;align-items:flex-start;gap:12px}
+.badge{flex:none;font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px;
+  display:inline-flex;align-items:center;gap:5px;white-space:nowrap;margin-top:1px}
+.badge.must{background:rgba(255,93,93,.16);color:var(--must)}
+.badge.high{background:rgba(255,180,67,.16);color:var(--high)}
+.badge.rel{background:rgba(90,209,154,.15);color:var(--rel)}
+.badge.maybe{background:rgba(90,169,209,.14);color:var(--maybe)}
+.badge.low{background:rgba(72,83,95,.25);color:var(--dim)}
+.badge .ov{font-size:10px;opacity:.8;font-weight:600;margin-left:3px}
+.ctitle{font-size:16px;font-weight:650;margin:0;line-height:1.3}
+.cmeta{margin-top:5px;font-size:13px;color:var(--dim)}
+.cmeta .spk{color:var(--txt);font-weight:600}
+.loc{display:inline-block;font-size:11.5px;color:var(--faint);border:1px solid var(--line);
+  border-radius:5px;padding:1px 7px;margin-left:2px;vertical-align:middle;font-weight:600}
+/* stage colors (match the calendar scheme) */
+.lc-main{color:#9db8ff;border-color:#3a4a7a;background:rgba(91,140,255,.13)}
+.lc-purple{color:#c8a6ff;border-color:#5a3f7a;background:rgba(163,113,247,.14)}
+.lc-plat{color:#6fd6e6;border-color:#2a6470;background:rgba(63,182,200,.13)}
+.lc-green{color:#7fdca0;border-color:#2d6a45;background:rgba(74,200,120,.13)}
+.lc-vip{color:#ff9ec8;border-color:#7a3a5a;background:rgba(255,126,182,.13)}
+.lc-telekom{color:#ff9ed8;border-color:#7a3a6a;background:rgba(255,120,210,.10)}
+.lc-innov{color:#ffc97a;border-color:#7a5a2a;background:rgba(255,180,67,.12)}
+.lc-yellow{color:#ecd56a;border-color:#6a6020;background:rgba(230,210,80,.12)}
+.lc-podcast{color:#a6b3c2;border-color:#3a4654;background:rgba(150,167,180,.10)}
+.lc-focus{color:#9aa6ff;border-color:#3f447a;background:rgba(124,140,255,.12)}
+.lc-work{color:#cbb189;border-color:#6a5836;background:rgba(180,150,90,.12)}
+.lc-sponsor,.lc-other{color:var(--faint);border-color:var(--line)}
+.tag.mine{background:rgba(255,180,67,.18);color:#ffce6e;border:1px solid rgba(255,180,67,.4)}
+.card.mine{border-left-color:#ffce6e;background:linear-gradient(90deg,rgba(255,180,67,.06),var(--panel) 60%)}
+/* My Schedule hero */
+#myday{margin:0 0 8px}
+.hero-h{font-size:18px;margin:30px 0 4px;display:flex;align-items:center;gap:9px}
+.mp-day{font-size:13px;font-weight:700;color:var(--accent);margin:20px 0 8px;letter-spacing:.3px}
+.mp-row{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+.mp-time{flex:none;width:62px;font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--txt)}
+.mp-body{flex:1;min-width:0}
+.mp-title{font-size:15px;font-weight:650;line-height:1.3}
+.mp-sub{font-size:12.5px;color:var(--dim);margin-top:3px}
+.mp-fork{margin-top:7px;padding:8px 10px;border:1px dashed var(--high);border-radius:8px;
+  background:rgba(255,180,67,.06);font-size:12.5px;color:var(--high);font-weight:600}
+.mp-fork .opt{color:var(--txt);font-weight:600}
+.tpill{display:inline-block;font:600 11px ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:var(--accent);background:var(--panel2);border-radius:5px;padding:1px 7px;
+  margin-left:4px;vertical-align:middle}
+.pickflag{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.4px;
+  text-transform:uppercase;margin-bottom:5px}
+details{margin-top:9px}
+summary{cursor:pointer;color:var(--faint);font-size:12.5px;list-style:none}
+summary:hover{color:var(--dim)}
+details[open] summary{color:var(--dim);margin-bottom:6px}
+.desc{font-size:13.5px;color:var(--dim);white-space:pre-wrap;border-left:2px solid var(--line);
+  padding-left:12px;margin:2px 0}
+.intel{margin-top:9px;padding:9px 12px;border-radius:8px;background:rgba(124,156,255,.07);
+  border:1px solid rgba(124,156,255,.22);font-size:13px;color:var(--dim);line-height:1.5}
+.intel-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.3px;
+  text-transform:uppercase;color:var(--accent);margin-right:7px;vertical-align:1px}
+.intel-txt{color:var(--txt)}
+.intel .hook{margin-top:5px;color:#cfe0ff}
+.intel .hook b{color:var(--accent);font-weight:700}
+.cutoff{margin:30px 0 0;padding:14px 16px;border:1px dashed var(--high);border-radius:9px;
+  background:rgba(255,180,67,.07);color:var(--high);font-size:13.5px;font-weight:600}
+.gone{opacity:.45}
+.tag{font-size:10.5px;font-weight:700;border-radius:5px;padding:1px 7px;margin-left:4px;
+  vertical-align:middle;text-transform:uppercase;letter-spacing:.3px}
+.tag.vip{background:rgba(255,93,93,.14);color:var(--must);border:1px solid rgba(255,93,93,.3)}
+.tag.ws{background:rgba(90,169,209,.12);color:var(--maybe);border:1px solid rgba(90,169,209,.3)}
+/* edit controls */
+.edit{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:11px;padding-top:11px;
+  border-top:1px dashed var(--line)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{font:600 12px inherit;padding:4px 11px;background:transparent;color:var(--dim);
+  border:0;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--panel2)}
+.seg button.on[data-s="must"]{background:var(--must);color:#0d1117}
+.seg button.on[data-s="want"]{background:var(--want);color:#0d1117}
+.seg button.on[data-s="skip"]{background:var(--skip);color:#0d1117}
+.edit label{font-size:11.5px;color:var(--faint)}
+.edit input[type=number]{width:58px;font:600 13px ui-monospace,monospace;background:var(--panel2);
+  color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
+.edit input.note{flex:1;min-width:160px;font:13px inherit;background:var(--panel2);color:var(--txt);
+  border:1px solid var(--line);border-radius:6px;padding:5px 9px}
+.edit .reset{font-size:11px;color:var(--faint);background:none;border:0;cursor:pointer;text-decoration:underline}
+.edit .reset:hover{color:var(--dim)}
+.edited-dot{display:none;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.card.edited .edited-dot{display:inline-block}
+/* modal */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;
+  align-items:center;justify-content:center;padding:24px}
+.overlay.open{display:flex}
+.modal{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:760px;
+  width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden}
+.modal h3{margin:0;padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px}
+.modal .body{padding:18px 20px;overflow:auto}
+.modal p{color:var(--dim);font-size:13.5px;margin:0 0 12px}
+.modal textarea{width:100%;height:260px;font:12.5px ui-monospace,monospace;background:#0d1117;
+  color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:12px;resize:vertical}
+.modal .row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.modal button{font:600 13px inherit;padding:9px 16px;border-radius:8px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--txt);cursor:pointer}
+.modal button.primary{background:var(--accent);color:#0d1117;border-color:var(--accent)}
+.modal button:hover{border-color:var(--accent)}
+.modal .close{float:right;background:none;border:0;color:var(--dim);font-size:20px;cursor:pointer;
+  padding:14px 18px}
+.count{font-size:12px;color:var(--faint)}
+@media (max-width:640px){
+  header.top{padding:22px 16px 16px} header.top h1{font-size:21px}
+  .wrap{padding:6px 12px 70px} nav.days{padding:10px 14px;gap:6px;flex-wrap:wrap}
+  .crow{gap:8px} .badge{font-size:11px;padding:2px 7px}
+  .ctitle{font-size:15px} .card{padding:12px 13px}
+  .mp-time{width:52px} .tpill,.loc,.tag{margin-left:0;margin-right:3px}
+  .ctitle .tpill,.ctitle .loc{display:inline-block;margin-top:3px}
+}
+</style></head><body>
+<header class="top">
+  <h1>CraftConf 2026 — my schedule</h1>
+  <div class="sub">Budapest · Jun 4–5. My starred picks up top; the full schedule of all 101 sessions (ranked by relevance, with speaker notes) below. Tap any talk for its abstract. Locations are colour-coded by stage.</div>
+  <div class="legend">
+    <span class="b"><span class="dot must"></span>Must-see</span>
+    <span class="b"><span class="dot high"></span>High</span>
+    <span class="b"><span class="dot rel"></span>Relevant</span>
+    <span class="b"><span class="dot maybe"></span>Maybe</span>
+    <span class="b"><span class="dot low"></span>Low fit</span>
+    <span class="b">★ = my pick · number = relevance score</span>
+  </div>
+</header>
+<nav class="days"><a href="#myday">My picks</a><a href="#thu">Thu</a><a href="#fri">Fri</a></nav>
+<div class="wrap">
+<section id="myday"><h2 class="hero-h">⭐ My schedule</h2>
+<div class="mp-day">Thu Jun 04</div>
+<div class="mp-row"><div class="mp-time">09:40</div><div class="mp-body"><div class="mp-title">Slow down to speed up <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Gergely Orosz</div></div></div>
+<div class="mp-row"><div class="mp-time">11:00</div><div class="mp-body"><div class="mp-title">2 starred — decide on the spot</div><div class="mp-sub">Matthew Clark / Reuven Cohen</div><div class="mp-fork">⚖ <span class="opt">Architecture in the Age of Autonomous Code</span> <span class="loc lc-purple">Purple stage</span> &nbsp;·&nbsp; <span class="opt">The Shift to Agentic AI</span> <span class="loc lc-main">Main stage</span></div></div></div>
+<div class="mp-row"><div class="mp-time">12:00</div><div class="mp-body"><div class="mp-title">3 starred — decide on the spot</div><div class="mp-sub">Banjo Obayomi / Gregor Hohpe / Hillel Wayne</div><div class="mp-fork">⚖ <span class="opt">Beyond Vibe Coding</span> <span class="loc lc-plat">Platform 2</span> &nbsp;·&nbsp; <span class="opt">Thinking like an Architect</span> <span class="loc lc-main">Main stage</span> &nbsp;·&nbsp; <span class="opt">How to find bugs in systems that don&#x27;t exist</span> <span class="loc lc-purple">Purple stage</span></div></div></div>
+<div class="mp-row"><div class="mp-time">14:00</div><div class="mp-body"><div class="mp-title">Re-engineering Software Delivery: Delivering with Supervised and Unsupervised Coding Agents <span class="loc lc-green">Green stage</span></div><div class="mp-sub">Wesley Reisz</div></div></div>
+<div class="mp-row"><div class="mp-time">14:55</div><div class="mp-body"><div class="mp-title">Architecture AntiPatterns and Pitfalls <span class="loc lc-plat">Platform 2</span></div><div class="mp-sub">Mark Richards</div></div></div>
+<div class="mp-row"><div class="mp-time">16:00</div><div class="mp-body"><div class="mp-title">Harness Engineering: How to Build Software When Humans Steer and Agents Execute <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Ryan Lopopolo</div></div></div>
+<div class="mp-row"><div class="mp-time">16:55</div><div class="mp-body"><div class="mp-title">Am I holding this right? <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Daniel Terhorst-North</div></div></div>
+<div class="mp-day">Fri Jun 05</div>
+<div class="mp-row"><div class="mp-time">10:30</div><div class="mp-body"><div class="mp-title">What Do I Do With My Developers? Product Ownership, Agentic Craft, and Shifting Expectations <span class="loc lc-vip">Tech Leaders&#x27; Lounge</span></div><div class="mp-sub">Daniel Terhorst-North, Reuven Cohen, Gojko Adzic, Emese Pogácsás, Péter Szász</div></div></div>
+</section>
+<h2 class="hero-h" style="margin-top:36px">📋 Full schedule</h2>
+<h2 class="day" id="thu">Thu Jun 04</h2>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">09:40–10:40</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card rel mine" data-id="cmowvh7ep00m1o16s391gz640" data-score="29" data-title="Slow down to speed up">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 29</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Slow down to speed up <span class="tpill">09:40–10:40</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Gergely Orosz</span> · Software Engineer &amp; Author at The Pragmatic Engineer</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Pragmatic Engineer (1M+ readers). Talk maps to his Jun 2 post: 2x code volume via agents → quality/debt risk; slow down to speed up.</span></div>
+      <details><summary>abstract</summary><div class="desc">AI agents are writing code pretty much everywhere. And yet, most teams and companies are not seeing that dramatic productivity gains… or are they?
+In this talk, Gergely shares an overview across the industry: how leading AI labs use the tools they are building, what Big Tech is doing, and how startups and more “traditional” companies are doing.
+We’ll see what is working, what is not, and what lessons different teams are learning about this new way of building software.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">11:00 →</span><span class="slot-meta">10 sessions in parallel · mixed lengths (see each card)</span></div>
+<div class="cards">
+<div class="card must mine" data-id="cmowvh7eq00m7o16szx70z7sj" data-score="70" data-title="Architecture in the Age of Autonomous Code">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 70</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Architecture in the Age of Autonomous Code <span class="tpill">11:00–11:45</span> <span class="loc lc-purple">Purple stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Matthew Clark</span> · Head Of Architecture at BBC</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">BBC Head of Architecture; led BBC&#x27;s cloud/serverless migration. No prior public AI writing — newer territory for him.</span></div>
+      <details><summary>abstract</summary><div class="desc">As AI systems become capable of writing, modifying, and operating software autonomously, we are entering an era where code is abundant and change is continuous. But if software increasingly builds itself, what exactly are we architecting?This talk explores how the rise of autonomous development reshapes what architecture means. Traditional patterns - from microservices to API contracts - were designed for human teams working at human speed. When AI agents can generate services, refactor systems, and negotiate interfaces at machine pace, those assumptions no longer hold.We’ll examine three fundamental shifts. First, architectures must become machine-comprehensible - not just documented for humans, but structured so agents can reason about change. Second, we move from designing systems to designing guardrails: encoding intent, cost boundaries, and risk tolerances that constrain autonomous behaviour. Third, human understanding no longer scales by default; when systems evolve at machine pace, comprehension and oversight must be designed deliberately.These shifts redefine what it means to shape software. Translating strategy into machine-readable constraints, maintaining clarity amid constant change, and governing systems where authorship is shared between humans and AI become core concerns.The future isn’t codeless - it’s architecture-first. When change is automated, the stability, trust, and intent of our systems depend on how deliberately we design the environments in which they evolve.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card must mine" data-id="cmp0ypvq700t1o16sctntzkhm" data-score="57" data-title="The Shift to Agentic AI: From Concept to Practice">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 57</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> The Shift to Agentic AI: From Concept to Practice <span class="tpill">11:00–11:45</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Reuven Cohen</span> · Agentic Engineer / CAiO at Cognitum One</div>
+      
+      <details><summary>abstract</summary><div class="desc">From early cloud computing to today’s agentic systems, Reuven Cohen has spent his career at the edge of major technology shifts—helping define how new paradigms move from experimentation into real-world adoption.
+
+In this keynote, Reuven will explore the fundamental shift underway in artificial intelligence—from static tools to dynamic, collaborative systems.
+
+Drawing on his work at the forefront of agentic infrastructure, he will introduce the principles behind this transformation and what it means for organizations, builders, and the future of software development. He will also introduce the Agentics Foundation, an initiative focused on advancing understanding and adoption of agentic AI systems.
+
+Reuven will share insights from his latest work developing production-ready agentic architectures and multi-agent environments. He will explore how organizations can move beyond traditional tooling toward fully composable, intelligence-driven systems—highlighting practical approaches, architectural patterns, and lessons learned from real-world deployments.
+
+Through real-world examples and emerging patterns, this session offers a clear view into how intelligent systems are reshaping workflows, decision-making, and creation itself—and how to begin building within this new paradigm today.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7er00m8o16smxftvi96" data-score="51" data-title="AI &amp; I - The Architecture of Our Identity: Mapping the Possibles, Lovables, and Undiscussables">
+  <div class="crow">
+    <span class="badge high">★ High · 51</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI &amp; I - The Architecture of Our Identity: Mapping the Possibles, Lovables, and Undiscussables <span class="tpill">11:00–12:45</span> <span class="loc lc-green">Green stage</span></p>
+      <div class="cmeta"><span class="spk">Xin Yao</span> · Sociotechnical architect &amp; Change Facilitator at Ypma Consulting</div>
+      
+      <details><summary>abstract</summary><div class="desc">(This is an interactive session)
+
+As AI disrupts the software industry, we face a radical threshold: Who are we now? The transactional, object-oriented paradigm of work is collapsing as knowledge becomes commoditized. For many, the shift from deterministic control to agentic supervision feels like a visceral threat to professional identity: a &quot;tug of war&quot; between the craft we have mastered and what the future seems to demand of us.
+
+This interactive session approaches the AI crossroads as a human modeling challenge. Together, we will move beyond technical harness engineering toward Continuous Self-Comprehension: reclaiming our agency in an era increasingly shaped by autonomous agents.
+
+Join Xin for a high-intensity discovery and learning experiment built on Connection Before Content. The session flows between:
+- Short framing moments
+- Visual collaborative modeling
+- Emotional inquiry and reflection
+
+Using the VIEW framework (Vulnerability, Impartiality, Empathy, Wonder) as a compass, we will move past the &quot;polished version&quot; of ourselves to map our daily AI reality into three distinct zones:
+
+- The Possibles
+Identifying high-impact use cases where AI expands our professional capability.
+- The Lovables
+Uncovering the deep human needs and emotions underlying our capacity to feel powerful.
+- The Undiscussables
+Naming the &quot;scary truths&quot;, welcoming the fear, fragility and overwhelm, while staying safe in our core.
+
+Whether you are an engineer, architect, manager, coach, or designer, you will leave with practical sociotechnical tools to intentionally model hard conversations, navigate shifting roles, and the emotional complexity of the AI era.
+
+Because ultimately, we cannot sustain continuous comprehension of increasingly complex AI-built systems without the capacity to stay deeply connected to ourselves and to each other.
+
+Join us to explore conversation as the next frontier of Collaborative Modeling, and to architect a future that remains human-centered, community-based, and profoundly connected.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7eq00m5o16sw2a3i8nz" data-score="31" data-title="How to survive and thrive as a dev (team) in the exponential age of AI.">
+  <div class="crow">
+    <span class="badge high">★ High · 31</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How to survive and thrive as a dev (team) in the exponential age of AI. <span class="tpill">11:00–11:45</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Sander Hoogendoorn</span> · CTO at ibood.com</div>
+      
+      <details><summary>abstract</summary><div class="desc">Real-world AI adoption, smarter ways of working, and lessons from the front linesThe AI revolution isn’t coming — it’s already altering how we architect products, ship features, and run engineering teams.During this talk, in his signature charismatic style, Sander Hoogendoorn, CTO at iBOOD.com and a seasoned developer with over four decades of coding experience, doesn’t get stuck in theory or hype, but confronts the pressing issues head-on. You’ll get a no-fluff, grounded view from iBOOD — what we’re already doing with AI, how we built it into our systems, and how it shapes the way we work.We will walk through concrete examples, such as using the Responses API, adopting the Model Context Protocol (MCP), embedding AI into our e-commerce workflows, and automating genuine parts of our stack. You’ll see where AI accelerates, and where it fails us.We won’t shy away from the dark side either — vendor lock-in, breaking prompts, model opacity, shifting APIs, and how fast dependency can become fragility. These are real risks that shape architectural and organizational decisions we make daily.To survive exponential speed, we retired many practices: no Scrum, no rigid ceremonies, no big upfront plans, no pull requests or code reviews. Instead, we embrace working in fluid autonomous microteams, continuous learning, experimentation, and radical adaptability.Expect an honest, fast-paced, and experience-driven session — mixing architecture, culture, and practical insight — on what it truly takes for developers and teams to survive and thrive in the age of AI.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmpgu2pdo009omn6rpx2qodh0" data-score="28" data-title="Legacy code in the AI era">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 28</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Legacy code in the AI era <span class="tpill">11:00–11:45</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Michael Feathers</span> · Founder at R7K Research &amp; Conveyance</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Wrote Working Effectively with Legacy Code; new book on AI-Assisted Programming. Thesis: AI code = the new legacy code.</span></div>
+      <details><summary>abstract</summary><div class="desc">Micheal Feathers feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvcyqc00lxo16sa1tyytv2" data-score="17" data-title="The Awareness Layer - How Accelerated Engineering Forces Smarter Organizations">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 17</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> The Awareness Layer - How Accelerated Engineering Forces Smarter Organizations <span class="tpill">11:00–12:45</span> <span class="loc lc-focus">Focus Platform</span></p>
+      <div class="cmeta"><span class="spk">Robert Ranson</span> · Co-Founder/Board member: Agentics Foundation at Agentics Foundation, HumanRace.ai</div>
+      
+      <details><summary>abstract</summary><div class="desc">The Awareness Layer: How Accelerated Engineering Forces Smarter OrganizationsAI has dramatically accelerated the ability to build. What used to take months can now take days, and what took teams can increasingly be done by small, highly capable groups. But this new engineering velocity creates a new bottleneck: organizational awareness. In this talk, Robert Ranson argues that the real constraint is no longer production capacity; it is the ability of leaders and organizations to perceive, interpret, and respond to change fast enough. As software creation becomes radically easier, the winners will not be those who build more, but those who build with better situational intelligence.Drawing from the front lines of agentic engineering, Robert introduces “The Awareness Layer” as a practical strategic framework for modern organizations: an always-on intelligence layer that helps teams detect opportunities earlier, reduce blind spots, prioritize what matters, and make decisions in step with accelerating reality. The session explores why traditional structures break under AI-speed conditions, where the new chokepoints emerge, and how businesses can evolve from reactive management to adaptive, awareness-driven operations. This is a talk for founders, operators, and innovators who want to understand what comes after faster engineering, and, how to build organizations that are actually capable of keeping up.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmpb9awlq000jn56skj0kogrv" data-score="16" data-title="Beyond the Pipeline: How Data Projects Drive Enterprise-Wide Business Transformation">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 16</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Beyond the Pipeline: How Data Projects Drive Enterprise-Wide Business Transformation <span class="tpill">11:00–11:45</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Sam Matysen</span> · Tribe Technical Leader at Allianz</div>
+      
+      <details><summary>abstract</summary><div class="desc">Most data projects deliver pipelines, dashboards, or models — yet remain isolated from the broader enterprise architecture and business transformation goals of the organization. The result? Impressive technology that fails to scale, gets duplicated, or quietly fades after go-live.
+
+In this talk, we explore how to design and position data projects as first-class building blocks within enterprise architecture — turning them into catalysts for organization-wide business transformation. Drawing on real-world patterns from large corporations, we&#x27;ll cover:
+
+Strategic anchoring: mapping data initiatives to business capabilities and value streams
+
+Architecture integration: embedding data products into the enterprise landscape using domain-driven ownership, data contracts, and composable design
+
+Operating model evolution: shifting from project to product thinking and establishing cross-functional ownership
+
+Scaling impact: using a single data project as a reference architecture that accelerates future transformation initiatives
+
+Whether you&#x27;re a data engineer, software architect, or technology leader, you&#x27;ll walk away with a practical framework for ensuring your next data project doesn&#x27;t just solve a problem — it reshapes how the enterprise operates.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7eq00m6o16sw3dgvra0" data-score="14" data-title="Model Drift and Software Attractors">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 14</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Model Drift and Software Attractors <span class="tpill">11:00–11:45</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Barry O&#x27;Reilly</span> · Founder at Black Tulip Technology</div>
+      
+      <details><summary>abstract</summary><div class="desc">What actually happens when we make a decision about a software architecture? How do we map from a business context to a component structure? How do we make decisions about granularity and arrive at monoliths or microservices? Is it heuristic? Is it a repeatable pattern? How do we know if it’s right? Why do we get this wrong so often?This session takes a step back and looks at the relationship between a business context and software structure using tools from the complexity sciences that help us to clarify our decision making and understand the forces that drive us to think in certain patterns. The session will take traditional methods like process and capability mapping and add a new layer of understanding that will help architects and developers avoid the mistakes of the past. The session will help us to think about where the levers are to make our designs more flexible and identify the places where we can copy from others and, most importantly, where we need to think for ourselves.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmpcdzu5c001rn56s6g0fbf2y" data-score="9" data-title="From Idea to an AI-Enabled SAP App">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 9</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Idea to an AI-Enabled SAP App <span class="tpill">11:00–12:00</span> <span class="loc lc-work">Central Workshop Area</span> <span class="tag ws">workshop · separate signup</span></p>
+      <div class="cmeta"><span class="spk">Gabor Timar</span> · SAP Basis Consultant at Accenture</div>
+      
+      <details><summary>abstract</summary><div class="desc">This presentation introduces the artificial intelligence capabilities available in the SAP BTP environment, with a special focus on using Joule in SAP Business Application Studio. Through a live demo, participants will follow the creation of a complete CAP application – from SAP BTP setup and development to deployment on SAP HANA Cloud. The session concludes with a short overview of SAP AI Launchpad and how to connect to external large language models such as Gemini, ChatGPT, and Claude.
+
+Register here: https://luma.com/g9clhhyb</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowv9q1s00lpo16sdz6u4l7h" data-score="0" data-title="Turn the Sh*t Around - High-performance communication techniques for high-performing teams">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Turn the Sh*t Around - High-performance communication techniques for high-performing teams <span class="tpill">11:00–11:45</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Joseph Pelrine</span> · Theoretically Retired Psychologist</div>
+      
+      <details><summary>abstract</summary><div class="desc">High-performing teams don&#x27;t fail because of bad code or missed deadlines — they fail because of broken communication. Many teams invest in psychological safety training, yet still find themselves stuck in the same dysfunctional patterns — and the reasons why may surprise you. When a message lands as a threat rather than information, the conversation is often over before it begins. In this talk, you&#x27;ll learn to recognise your personal communication triggers and understand why so many well-intentioned team interventions quietly backfire. You&#x27;ll also learn some powerful communication protocols borrowed from emergency medicine and aviation that high-performing teams use to stay aligned under pressure. Leave with practical tools you can apply immediately — because when your communication improves, your team improves.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">11:45–14:30</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card rel" data-id="cmpgrs058007tmn6rn4emgw5e" data-score="22" data-title="📖 Book signing by Gergely Orosz">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 22</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> 📖 Book signing by Gergely Orosz <span class="tpill">11:45–14:30</span> <span class="loc lc-sponsor">Sponsor Arena</span></p>
+      <div class="cmeta"><span class="spk">Gergely Orosz</span> · Software Engineer &amp; Author at The Pragmatic Engineer</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Pragmatic Engineer (1M+ readers). Talk maps to his Jun 2 post: 2x code volume via agents → quality/debt risk; slow down to speed up.</span></div>
+      <details><summary>abstract</summary><div class="desc">Meet Gergely Orosz at the Sponsor Arena next to the CraftHub booth for an exclusive signing session of the Hungarian edition of Software Engineer’s Guidebook!</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">12:00–12:45</span><span class="slot-meta">7 sessions in parallel</span></div>
+<div class="cards">
+<div class="card must mine" data-id="cmowv9ssw00lso16sulimhkq3" data-score="90" data-title="Beyond Vibe Coding: Building the Harness for Production Agents">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 90</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Beyond Vibe Coding: Building the Harness for Production Agents <span class="tpill">12:00–12:45</span> <span class="loc lc-plat">Platform 2</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Banjo Obayomi</span> · Senior Solutions Architect</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI coding recently crossed a threshold. Agents stopped producing buggy piles and started shipping code that mostly works. The question is no longer &quot;can it write code?&quot; It&#x27;s &quot;how do we engineer around the fact that it can?&quot;
+
+The answer isn&#x27;t better prompts. It&#x27;s the harness: the deterministic scaffolding that lets agents do real work without us reading every line. Tools the agent calls. Skills it loads. Verification gates that decide what ships. Recovery contracts that catch what fails. The harness is what stands between vibe coding and production.
+
+This talk walks through patterns for building that harness, anchored in a real system I shipped and haven&#x27;t touched in months. An AI-driven local events newsletter that scrapes, validates, deploys, and recovers on its own. We&#x27;ll cover the shared responsibility model for agentic systems, where reasoning owns intent and the harness owns consequences, spec-driven development as the antidote to verification debt, and the language-agnostic patterns that separate prototypes from systems you can trust.
+
+You&#x27;ll leave knowing how to build agents that ship, not just demos that impress.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high mine" data-id="cmowvh7er00m9o16sffco5b7j" data-score="34" data-title="Thinking like an Architect">
+  <div class="crow">
+    <span class="badge high">★ High · 34</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Thinking like an Architect <span class="tpill">12:00–12:45</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Gregor Hohpe</span> · Software architect, speaker, and author</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Wrote Enterprise Integration Patterns &amp; The Software Architect Elevator. &#x27;Architects make everyone else smarter.&#x27;</span></div>
+      
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmp2mr5i000wco16sg9lrwpie" data-score="18" data-title="How Developers Still Have Jobs?">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 18</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How Developers Still Have Jobs? <span class="tpill">12:00–12:45</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Kent Beck</span> · Principal at The Critical Hire</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Creator of XP/TDD; now dogfooding &#x27;augmented coding&#x27; (agent = a junior with no taste) vs &#x27;vibe coding.&#x27;</span></div>
+      <details><summary>abstract</summary><div class="desc">Kent Beck feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmpb9ca0y000kn56s5iwnpa3h" data-score="14" data-title="From Single Database to Distributed: Scaling Real-Time Fraud Detection at SEON">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 14</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Single Database to Distributed: Scaling Real-Time Fraud Detection at SEON <span class="tpill">12:00–12:45</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Viktor Micskó</span> · Staff Software Engineer at SEON</div>
+      
+      <details><summary>abstract</summary><div class="desc">When your fraud detection system must evaluate hundreds of rules per request - each potentially scanning millions of historical records - and return a verdict in under 600 milliseconds, database architecture becomes existential. This talk covers the full journey: from a single PostgreSQL RDS instance, through customer-based sharding, to a hybrid architecture where a measurement-driven router selects the optimal database for each query, to our migration to distributed YugabyteDB.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7er00mco16sbss0y61r" data-score="11" data-title="Why New Processes Don&#x27;t Fix Delivery">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 11</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Why New Processes Don&#x27;t Fix Delivery <span class="tpill">12:00–12:45</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Marian Hartman</span> · Learning Architect, Consultant at Change that Sticks</div>
+      
+      <details><summary>abstract</summary><div class="desc">Skip the Initiative. Find the Leverage Point.
+
+Most delivery problems don&#x27;t announce themselves. They accumulate. Cycle times stretch gradually. Parts of the codebase quietly become zones no one wants to touch. AI tools get introduced with real promise, but their impact varies across teams in ways that are hard to explain.
+
+The usual response is a large intervention — a new process, a platform overhaul, a transformation initiative. These generate visible movement. They rarely generate durable stability.
+
+In this talk, we&#x27;ll look at why our classic interventions fail to strengthen delivery over time — and what actually does. Using examples from AI integration, code reviews, and incident response, we&#x27;ll trace how specific, repeatable behaviors inside daily work determine whether a system gradually self-corrects or slowly accumulates fragility.
+
+You&#x27;ll leave with a concrete approach to finding the smallest precise action inside workflows you already have. Specifically, we’ll be tackling change that shows up in behavior, not slides.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmp0yu0ss00t6o16smjyyvnic" data-score="10" data-title="AI &amp; Social Acceleration: Why are we faster yet falling behind?">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 10</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI &amp; Social Acceleration: Why are we faster yet falling behind? <span class="tpill">12:00–12:45</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Cat Swetel</span> · General Manager &amp; Senior Director of Engineering at Nubank</div>
+      
+      <details><summary>abstract</summary><div class="desc">In a world of countless AI assistants and helpful agents, why does it feel like we have less time than we did five years ago (or even six months ago)? Sociologist Hartmut Rosa argues that technical acceleration inevitably leads to social change that outpaces our ability to adapt. In tech, this manifests as &quot;Frenetic Standstill&quot;—doing more work while achieving less meaningful progress.
+
+This session provides a practical toolkit for teams navigating the AI-shift. We’ll discuss emerging patterns and pitfalls in AI-assisted or AI-executed work. We will also consider the potential of AI to allow space for human resonance in the craft of software development and in life.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low mine" data-id="cmowvh7er00mdo16sflox29zi" data-score="5" data-title="How to find bugs in systems that don&#x27;t exist">
+  <div class="crow">
+    <span class="badge low"> Low fit · 5</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How to find bugs in systems that don&#x27;t exist <span class="tpill">12:00–12:45</span> <span class="loc lc-purple">Purple stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Hillel Wayne</span> · Software Development Consultant at Windy Coast Consulting</div>
+      
+      <details><summary>abstract</summary><div class="desc">Building correct distributed systems takes thinking outside the box, and the fastest way to do that is to think inside a different box. One different box is &quot;formal methods&quot;, the discipline of mathematically verifying software and systems. Formal methods encourages unusual perspectives on systems, models that are also broadly useful to all software developers. In this talk we will learn how to see the world through the eyes of formal methods, how to understand abstract behavior, and how to find bugs in systems before you still building them.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">14:00 →</span><span class="slot-meta">10 sessions in parallel · mixed lengths (see each card)</span></div>
+<div class="cards">
+<div class="card must mine" data-id="cmowvh7es00mko16swsktpskt" data-score="102" data-title="Re-engineering Software Delivery: Delivering with Supervised and Unsupervised Coding Agents">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 102</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Re-engineering Software Delivery: Delivering with Supervised and Unsupervised Coding Agents <span class="tpill">14:00–15:40</span> <span class="loc lc-green">Green stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Wesley Reisz</span> · Technical Principal at Thoughtworks</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI is now part of how we build software. Dismissing its impact is no longer an option.But adopting AI doesn’t mean outsourcing thinking. You still own the code. You still own the decisions. And there is no magic prompt that replaces engineering discipline.While AI has entered the SDLC, teams often struggle to apply the rigor they’ve relied on in the past. At one extreme, we see ad-hoc “vibe coding”: fast, creative, and largely unverifiable. At the other, autonomous agent pipelines operate with limited visibility into decisions, architectural intent, or safeguards.Both approaches fail for the same reason: they attempt to scale output without first engineering control.The real shift isn’t about abandoning practices — it’s about evolving them. High-performing teams are breaking work into smaller, iterative interactions with LLMs, using structured back-and-forth during research and planning to shape outcomes before code is ever generated. This is context engineering in practice.Without explicit constraints and verification (gained through iteration and domain knowledge), we erode some of the core principles of software craftsmanship (determinism, testability, and controlled execution), leading to systems we neither trust nor fully understand. This is not constraining (verifying) the output we produce.This 90-minute hands-on session focuses on supervised and unsupervised delivery using spec-driven development and harness engineering, where developers own the process, and generation occurs at the pace you can verify. We&#x27;ll discuss how to structure iterative planning, maintain control through flow-based execution, and build systems that produce verifiable, trustworthy outcomes. Ultimately, the degree of supervision is a business decision on what you&#x27;re producing and what you can verify.Adopting AI is not a tooling decision. It is an engineering problem requiring explicit choices around domain knowledge, verification, control, and security.Key Takeaways:Spec-driven development allows you to define a contract between the developer and the LLM.Harness Engineering allows you to verify that the output of generated code meets your intent.Supervised and Unsupervised use of coding agents are both highly effective ways of delivering software today.There is no magic prompt. Software engineering is a creative process, best done with a human in control. The degree of supervision is directly related to your ability to verify.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7es00mjo16s6zbxhfte" data-score="32" data-title="Beyond autonomous teams: essence and accident in product development complexity">
+  <div class="crow">
+    <span class="badge high">★ High · 32</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Beyond autonomous teams: essence and accident in product development complexity <span class="tpill">14:00–14:45</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Simon Rohrer</span> · Head of Enterprise Architecture &amp; Ways of Working at Saxo Bank</div>
+      
+      <details><summary>abstract</summary><div class="desc">Autonomous teams are an article of faith in modern software development. Give cross-functional full-stack full-lifecycle teams autonomy and they will deliver value and flow – or better value, sooner, safer, happier.But where are the boundaries of autonomy? Where does governance and policy fit in? Can a team decide their own HR practices, interactions with regulators &amp;amp; funding model? What about architecture, design, or organisational decisions that – by the nature of the product, not a poorly chosen architecture – must span multiple teams, or even multiple teams-of-teams? How are they made?How are autonomy and coherence balanced in a fractal way? Who decides what, when and how? And who decides who decides?Simon will provide a combination of theory – the Viable Systems Model, the Platform model (&quot;preventing unnecessary creativity&quot;), Socio-Technical design principles – and practical experience, as a preview to his contribution to Jon Smart&#x27;s forthcoming book tentatively titled Organising for Outcomes.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmoww744000ovo16su65jj4mz" data-score="28" data-title="Debiasing Your Software Design Decision-Making">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 28</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Debiasing Your Software Design Decision-Making <span class="tpill">14:00–14:45</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Evelyn van Kelle, Kenny (Baas) Schwegler</span> · Social scientists, change management consultant &amp; trainer at Xebia</div>
+      
+      <details><summary>abstract</summary><div class="desc">Every significant software design choice—whether you’re designing a bounded context, deciding on the system boundary, settling on an architectural style, selecting a complex system integration approach, and even evaluating a block of AI-generated code—has a moment where one path just feels right. But what if that powerful &#x27;gut feeling&#x27; is actually a cognitive bias in disguise?
+
+The human mind is a powerful tool, yet it is systematically prone to errors. These errors aren&#x27;t just abstract ideas; they are design flaws in our own decision-making that can lead directly to fragile architectures, ballooning technical debt, and costly rework, regardless of whether the code was human or machine-generated. Biases like the anchoring effect (getting stuck on the first idea) or the sunk cost fallacy (clinging to a failing project) are constantly shaping your software.
+
+Join us to move from a reactive, bias-driven approach to a deliberate, resilient, and ultimately more effective design process. This talk explores how cutting-edge research from behavioural economics can be applied directly to software architecture and development, with or without AI assistance.
+
+We will move beyond simply being aware of biases. We will introduce a practical, five-step checklist designed to systematically &#x27;debias&#x27; your design choices, helping you build both better software and a better decision-making habit for all your technical work.
+
+You will learn how to:
+Be Decision-Ready: Recognize when Myopic Misery is rushing you into action, or when Status Quo Bias is trapping you in inaction due to cognitive load—ensuring you make choices based on strategy, not mental fatigue.
+
+Broaden the Frame: Combat Functional Fixedness and Additive Bias to uncover the elegant solutions your brain naturally ignores—breaking the cycle of solving every problem by simply adding more complexity.
+
+Seek Independent Advice: Move past Overconfidence Bias and Correlation Neglect to stop mistaking echoed opinions for independent proof, ensuring you are acting on diverse data rather than a single weak signal amplified by the group.
+
+Test Your Assumptions: Inoculate your team against the Authority Bias of AI-generated code and the Illusion of Control it fosters, replacing the dangerous comfort of &quot;black box&quot; certainty with rigorous stress-testing that withstands real-world chaos.
+
+Establish Simple Rules: Avoid the Law of Triviality (bikeshedding) to dramatically increase velocity, ensuring your team stops debating low-risk choices and focuses their cognitive energy on the decisions that actually stick.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7es00mho16smukeakmo" data-score="24" data-title="Software Workflow Optimization: The DDO Model">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 24</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Software Workflow Optimization: The DDO Model <span class="tpill">14:00–14:45</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Titus Winters</span> · Senior Principal Scientist at Adobe</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Adobe / ex-Google; curated &#x27;Software Engineering at Google.&#x27; DDO (Develop / Deploy / Operate) cost model.</span></div>
+      <details><summary>abstract</summary><div class="desc">How do you reason about which tools to provide your developers? What is the value of finding a class of bugs earlier in the workflow? How late in the software release process is too late to stop the pipeline to fix a defect? How do we reason about the value of faster deployments? This talk will attempt to answer questions like these, using the &quot;Develop, Deploy, Operate&quot; model. This work attempts to condense decades of platform engineering arguments into a model for reasoning about software cost, along with a few key insights for guiding platform and tooling investments.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7es00mgo16s80lq6e4y" data-score="12" data-title="From Idea to Model to Code">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 12</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Idea to Model to Code <span class="tpill">14:00–15:40</span> <span class="loc lc-focus">Focus Platform</span></p>
+      <div class="cmeta"><span class="spk">Martin Dilger</span> · Author, CEO at Nebulit GmbH</div>
+      
+      <details><summary>abstract</summary><div class="desc">Goal: participants will explore Event Modeling, Specification-Driven Development, and code generation - without writing any markdown.
+
+In this interactive workshop, we take rough requirements and turn them into a running system. Starting from a messy idea, you’ll build a visual Event Model that captures behavior, decisions, and data flow. This model becomes a living specification that guides implementation, enabling you to generate code and iterate quickly.
+
+You will:
+
+Explore Event Modeling hands-on and visualize system behavior
+
+Apply spec-driven development without writing extensive documentation
+
+Generate working code directly from the model
+
+Continuously refine the system as you test and experiment
+
+By the end, you’ll have built a working prototype and gained a practical, repeatable approach to going from idea to model to code - and back.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowuxoxu00l3o16sds74tqth" data-score="5" data-title="Ship the loop, not the product">
+  <div class="crow">
+    <span class="badge low"> Low fit · 5</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Ship the loop, not the product <span class="tpill">14:00–14:45</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">James Hawkins</span> · Co-CEO at posthog</div>
+      
+      <details><summary>abstract</summary><div class="desc">Software used to be about building a thing and shipping it. That era is ending. The product is no longer the artifact — it&#x27;s the loop that finds problems, writes the fix, ships it, and learns. Your job isn&#x27;t to build the product anymore. It&#x27;s to build the system that builds the product. This talk is about what that actually looks like: self-driving products, MCPs as the new front door, and how to get a team to stop shipping features and start shipping loops.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmp2kxwli00wao16se62xd5zg" data-score="3" data-title="What Are We, Exactly? Redefining the Tech Manager Role">
+  <div class="crow">
+    <span class="badge low"> Low fit · 3</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> What Are We, Exactly? Redefining the Tech Manager Role <span class="tpill">14:00–14:45</span> <span class="loc lc-vip">Tech Leaders&#x27; Lounge</span></p>
+      <div class="cmeta"><span class="spk">Arlo Belshee, Robert Ranson, Cat Swetel, Emese Pogácsás, Péter Szász</span> · Fractional CTO &amp; Advisor, Distinguished Engineer at Eolus.ai</div>
+      
+      <details><summary>abstract</summary><div class="desc">What does excellent engineering management look like under AI pressure and flattening hierarchies? As technical credibility gets harder to maintain and org demands velocity and efficiency, the tech manager role is being rewritten in real time — and there&#x27;s no consensus on what good looks like anymore.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpgtokty009mmn6rliu7a3hg" data-score="0" data-title="Diversity in the AI age">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Diversity in the AI age <span class="tpill">14:00–14:45</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">József Holderith, Rozália Miklós, Katalin Hornyik, Gabriella Mátyás-Kollár</span> · Host of mAI podcast, Technology Partner Sales at IBM</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI is a technology that democratizes wide range of knowledge and still diversity imbalance is reproduced.
+
+Globally appr. 22% of AI-relatednpositions are held by women. AI algorithms can contain inherent biases as well - how do we make sure we have the right controls? AI quickly automates administrative roles that are mostly done by women, how they can still be rather winners of the new era than losers? How women can be visible in the fields of AI? What is our responsibility?
+
+These are the key topics the accomplished panel members will talk about.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowv9rvv00lro16sfoc46hmu" data-score="0" data-title="Responsibility Driven Design Revisited">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Responsibility Driven Design Revisited <span class="tpill">14:00–14:45</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Ian Cooper</span> · Senior Principal Engineer at Just Eat Takeaway</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Senior Principal Eng at Just Eat Takeaway — your closest domain peer (food ordering+delivery at scale; ~900 eng, 700+ microservices, ~500 releases/wk). Creator of Brighter/Darker.</span></div>
+      <details><summary>abstract</summary><div class="desc">How do we use objects to model a domain? Whilst Domain Driven Design (DDD) exhorts its practitioners to focus on the domain, it is surprisingly sparse on how we should accomplish that, other than a few patterns whose job is to abstract away concepts that live outside of that domain. What though of the domain model?In Domain Driven Design, Eric Evans is explicit that it relies on usage of Rebecca Wirfs-Brock&#x27;s Responsibility Driven Design (RDD), which sees allocation of responsibilities as the key technique for splitting our system into co-operating objects. Despite this, many developers who are aware of DDD, know little about RDD. In this talk we aim to set that right with a journey into RDD.  In an example-driven talk we will work through analysing a domain using RDD, explaining key techniques such as CRC cards for modelling the domain. Along the way, we will explain key concepts like responsibilities, roles, object stereotypes, and control styles.Finally, we will ask how RDD fits into our current approaches to software development. We will re-explore its relationship to DDD and look at how techniques like TDD can be used to help us uncover responsibilities, roles and collaborators.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpmlp1wu006cnv6s3qy2lxgs" data-score="0" data-title="How to reinvent yourself in the face of disruption">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How to reinvent yourself in the face of disruption <span class="tpill">14:00–14:45</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Nickolas Means</span> · Engineering Manager, Ruby Infrastructure at Shopify</div>
+      
+      <details><summary>abstract</summary><div class="desc">Nickolas Means feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">14:50–15:50</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card rel" data-id="cmpcduj4d001pn56s63kgwep9" data-score="16" data-title="Refactor Smarter, Not Harder: AI for Legacy Code">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 16</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Refactor Smarter, Not Harder: AI for Legacy Code <span class="tpill">14:50–15:50</span> <span class="loc lc-work">Central Workshop Area</span> <span class="tag ws">workshop · separate signup</span></p>
+      <div class="cmeta"><span class="spk">Gergely Ruzsics</span> · Software Developer Engineer at Tesco Technology</div>
+      
+      <details><summary>abstract</summary><div class="desc">Learn how to transform hard-to-maintain legacy code into clean, modern, and testable systems using AI-assisted tools. This workshop walks through practical refactoring techniques, showing how AI can help identify code smells, suggest improvements, and accelerate safe changes without breaking functionality. 
+
+Participants will explore real-world examples of legacy applications and learn strategies for incrementally improving readability and maintainability. The session also covers how to combine automated AI suggestions with proven engineering practices such as unit testing, and continuous refactoring. By the end of the workshop, attendees will gain practical workflows for modernizing existing codebases faster and with greater confidence.
+
+Register here: https://luma.com/61c1k3gn</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">14:55–15:40</span><span class="slot-meta">6 sessions in parallel</span></div>
+<div class="cards">
+<div class="card high mine" data-id="cmowv9qoj00lqo16sqrrkw2vs" data-score="49" data-title="Architecture AntiPatterns and Pitfalls">
+  <div class="crow">
+    <span class="badge high">★ High · 49</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Architecture AntiPatterns and Pitfalls <span class="tpill">14:55–15:40</span> <span class="loc lc-plat">Platform 2</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Mark Richards</span> · Hands-on Software Architect, Published Author at Developer to Architect</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Co-author Fundamentals of Software Architecture &amp; The Hard Parts; antipatterns catalog.</span></div>
+      <details><summary>abstract</summary><div class="desc">When do you need an architecture? How specific should my contracts be? Should I make everything a microservice? Are my services too small? If you are wondering about these questions, you’re not alone. It turns out these questions all relate to architecture anti-patterns and pitfalls - things we do that get us into trouble. In this lively session, Mark Richards talks about some of the common architecture anti-patterns and pitfalls you’re likely to encounter, and ways to avoid these common architectural traps.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7et00moo16suilk0n9l" data-score="42" data-title="Who Is Actually Making the Architectural Decisions Right Now? Facilitating Architecture in an AI-Accelerated World">
+  <div class="crow">
+    <span class="badge high">★ High · 42</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Who Is Actually Making the Architectural Decisions Right Now? Facilitating Architecture in an AI-Accelerated World <span class="tpill">14:55–15:40</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Kenny (Baas) Schwegler, Evelyn van Kelle</span> · Software Architecture Catalyser, Collaborative Software Designer, Trainer and Author at DHL &amp; Weave IT B.V.</div>
+      
+      <details><summary>abstract</summary><div class="desc">Developers have always made implicit architectural decisions. What has changed is the speed at which those decisions get delegated to AI agents. When a developer who doesn&#x27;t deeply understand the problem prompts an AI, the AI doesn&#x27;t understand it either. It fills that gap with assumptions that are fluent, convincing, and invisible. We treat that confident output as authoritative and lower our scrutiny. What researchers call cognitive surrender. AI-generated code doesn&#x27;t just inherit our biases. It compounds them in a reinforcement loop: biased decisions produce biased context, which produces more biased suggestions.This is not just an AI problem. It&#x27;s an architecture problem that AI makes visible, and more urgent. As teams move faster with AI, centralised architecture governance becomes an even bigger bottleneck, pushing more decisions into the implicit. But AI also creates an opportunity: we can feed engineering and architectural principles forward into the software development lifecycle, earlier and more explicitly than before. That requires facilitating and coaching architecture at the team level, not reviewing output after the fact. Real practitioner stories on facilitating software architecture consistently confirm: the answer is not more control, but collaborative practices and strong engineering principles that make architecture a shared team capability.This is an interactive session. Expect to think out loud, share how you make architectural decisions today, and explore together what it takes to keep architecture intentional, explicit, and human-led in an AI-accelerated world.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowuxoih00l2o16srcd8gh48" data-score="20" data-title="Taming the Unpredictable: Technical Leadership in Chaotic Times">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 20</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Taming the Unpredictable: Technical Leadership in Chaotic Times <span class="tpill">14:55–15:40</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Michelle Brush</span> · Engineering Director, SRE at Google</div>
+      
+      <details><summary>abstract</summary><div class="desc">The software industry is shifting at a rate we’ve not seen in recent times, driven by the contradictory pressures of rapid AI innovation and a renewed focus on cost optimization. We are moving beyond the era of predictable systems—managed by traditional project plans, runbooks, and repeatable tests—into an era of complex, sociotechnical systems that often behave nondeterministically. In this chaotic landscape, the nature of engineering work isn&#x27;t disappearing; it is moving toward higher levels of abstraction.This session explores how to navigate the coming complexity by embracing a risk-first approach to both leadership and system design. We will examine why AI/ML is not just another automation layer but a shift that requires new strategies for building and maintaining reliable systems, including: risk-driven software planning, abstract system design, system-level testing, and a culture that allows for experimentation.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7es00mno16syaeu0nmf" data-score="19" data-title="Compiling AI-Assisted Specs into Well-Typed Applications with F# and WebSharper">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 19</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Compiling AI-Assisted Specs into Well-Typed Applications with F# and WebSharper <span class="tpill">14:55–15:40</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Adam Granicz</span> · Founder at IntelliFactory - Your Functional Experts</div>
+      
+      <details><summary>abstract</summary><div class="desc">Modern applications are still dominated by glue code: manual wiring between state, UI, and navigation that is repetitive, error-prone, and hard to reason about. Meanwhile, AI-assisted code generation offers speed but often lacks reliability, transparency, and can be costly due to large code outputs and iterative refinement.This talk presents an alternative: treating applications as specifications that can be compiled into well-typed programs, with AI assisting in writing the specification rather than generating code directly. AI doesn’t build the application, it helps you describe it. Because the specification is compact and structured, it requires significantly fewer tokens than full code generation, making AI assistance more efficient, more predictable, and easier to control.We model applications as screen-local behavior, a transition graph for flow, and WebSharper.UI templates for presentation. A compiler synthesizes the application from this specification and verifies that behavior, UI, and navigation fully agree. If the generated program type-checks, the result is a complete, fully wired application with no missing bindings or hidden glue code, essentially shifting development from writing and debugging code to specifying intent, with the compiler enforcing consistency end-to-end.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmpb9diz4000ln56sodkuab8w" data-score="8" data-title="Is it really that expensive to build an AI system today?">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 8</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Is it really that expensive to build an AI system today? <span class="tpill">14:55–15:40</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Ivan Petrović</span> · Machine Learning Technology Lead at HTEC</div>
+      
+      <details><summary>abstract</summary><div class="desc">Building an AI prototype is easy; running one in production is where the bill arrives. Ivan will break down the key factors that drive the cost of AI systems in real-world use, from inference and infrastructure to the operational trade-offs that quietly define ROI. He&#x27;ll also touch on the other side of the coin: what it costs companies to bring AI into their own SDLC and developer workflows. Expect concrete examples, honest numbers, and a clearer picture of where AI is actually feasible today.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7et00mpo16sa3p83whj" data-score="3" data-title="Code Health Guardian: Rigorous yet Sustainable Human Reviews in the AI Era">
+  <div class="crow">
+    <span class="badge low"> Low fit · 3</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Code Health Guardian: Rigorous yet Sustainable Human Reviews in the AI Era <span class="tpill">14:55–15:40</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Artie Shevchenko</span> · Author. ITMO University Lecturer. Software Engineer at Canva</div>
+      
+      <details><summary>abstract</summary><div class="desc">While senior engineers have always prioritized code health, the AI era has turned a best practice into a survival requirement. As we shift from manual coding to the role of Code Health Guardians, our primary task becomes reviewing and protecting codebases that must now survive an unprecedented commit velocity.
+
+But is being a Code Health Guardian just a full-time review job now? What happens to our own craft? How do we maintain intellectual control over the codebase without burning out or becoming the new bottleneck?
+
+In this session, you will learn:
+
+- Theory-practice feedback loop: How the cycle between real understanding and practice has driven progress in the past, how generative AI threatens that loop today, and what it means for your codebase.
+
+- Code review strategy: How to address the human review bottleneck without sacrificing rigor in both self-reviews and peer reviews.
+
+- Unified model for code health and its practical applications: The seven causes of complexity and three distinct types of complexity problems, and how to move beyond vague &quot;code smells&quot; toward a rigorous, largely objective framework for evaluating and improving code health.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">15:00–15:40</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmp2mstyr00wdo16szbyu1wwn" data-score="0" data-title="Ethics of engineering in the age of AI">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Ethics of engineering in the age of AI <span class="tpill">15:00–15:40</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Ian Thomas</span> · Software Engineer at Meta</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Meta Reality Labs; ran an AI-for-productivity programme, built an &#x27;Assess &amp; Grow&#x27; maturity model, grew an AI-eng community 0→400+.</span></div>
+      <details><summary>abstract</summary><div class="desc">Ian Thomas feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">16:00 →</span><span class="slot-meta">9 sessions in parallel · mixed lengths (see each card)</span></div>
+<div class="cards">
+<div class="card must mine" data-id="cmowuxpyx00l4o16sen0q55v9" data-score="78" data-title="Harness Engineering: How to Build Software When Humans Steer and Agents Execute">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 78</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Harness Engineering: How to Build Software When Humans Steer and Agents Execute <span class="tpill">16:00–16:45</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Ryan Lopopolo</span> · Member of Technical Staff at OpenAI</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">OpenAI MoTS; coined the public &#x27;harness engineering&#x27; frame. Shipped ~1M LOC with 0 hand-written lines via Codex.</span></div>
+      <details><summary>abstract</summary><div class="desc">Coding agents are getting good enough that “can the model write code?” is no longer the most interesting question. The more important question is: what kind of engineering system do you need around the model to make its work useful, repeatable, and trustworthy?This talk is about Harness Engineering: an agent-first way of building software where the engineer’s job shifts from directly producing every implementation detail to designing the goals, constraints, context, tools, checks, and feedback loops that let agents do real work. I’ll share practical patterns for scoping tasks, shaping context, building guardrails, and deciding where agents are already strong versus where they still fail in frustrating ways.The argument is that the biggest change comes from more than just improvements in model capability; increasingly, higher quality from agents comes from changes in the operating model of software development itself. If humans increasingly steer and agents increasingly execute, then the hard part becomes building the harness that makes that collaboration actually work.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7eq00m2o16sq04zr8m0" data-score="38" data-title="Cognitum: Building Intelligence at the Hardware Layer">
+  <div class="crow">
+    <span class="badge high">★ High · 38</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Cognitum: Building Intelligence at the Hardware Layer <span class="tpill">16:00–17:40</span> <span class="loc lc-focus">Focus Platform</span></p>
+      <div class="cmeta"><span class="spk">Reuven Cohen</span> · Agentic Engineer / CAiO at Cognitum One</div>
+      
+      <details><summary>abstract</summary><div class="desc">Reuven Cohen focuses on a deeper question: What happens when intelligence is no longer just a layer of software, but something built directly into the systems we run on?In this forward-looking workshop, Reuven will introduce Cognitum, his latest venture exploring the convergence of AI infrastructure and next-generation computing.The session will begin with a deep dive into the Cognitum chip, demonstrating how intelligence can be embedded directly in the hardware layer to natively support agentic systems. Participants will gain insight into how this approach enables faster coordination, more efficient execution, and a fundamentally new model for building intelligent systems.Building on this foundation, Reuven will connect these concepts to real-world agentic architectures—showing how hardware and software are beginning to converge into unified, intelligence-driven systems.This workshop is designed for forward-thinking leaders, builders, and technologists interested in where AI infrastructure is heading—and how to start preparing for what comes next.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmppizodk00j5pa6ppu3o6e80" data-score="33" data-title="From idea to impact: building successful products in the Agentic AI era">
+  <div class="crow">
+    <span class="badge high">★ High · 33</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From idea to impact: building successful products in the Agentic AI era <span class="tpill">16:00–16:45</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Zsuzsa Kovács, István Szabó, Richárd Román, Emese Pogácsás</span> · Freelance Senior UX Researcher</div>
+      
+      <details><summary>abstract</summary><div class="desc">What will happen at the Compass AI &amp; Tech Summit?
+
+This panel discussion explores the latest trends shaping the future of AI/ML, product development, UX/UI, data, and engineering leadership - and how these disciplines are becoming increasingly interconnected in the AI era.
+
+Together with the experts behind Compass, we will dive into the biggest questions each track is currently facing, while uncovering the emerging patterns across the industry.
+
+More than just a trend overview, the panel offers a behind-the-scenes look into the themes and discussions attendees can expect at Compass AI &amp; Tech Summit - straight from the people helping shape the agenda itself.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7et00mwo16szprp2yrt" data-score="27" data-title="Distributed agents that survive anything">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 27</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Distributed agents that survive anything <span class="tpill">16:00–17:40</span> <span class="loc lc-green">Green stage</span></p>
+      <div class="cmeta"><span class="spk">Daniel Vigovszky</span> · Senior Staff Software Engineer at Golem Cloud</div>
+      
+      <details><summary>abstract</summary><div class="desc">Writing distributed systems that are fail-safe has always been a challenging area and many techniques have been emerged to help dealing with the large amount of problems it involves. In the past decade we’ve been using things like distributed, persistent actor systems in Scala with Akka, or durable execution platforms such as Temporal to be able to model complex, potentially long running workflows and other business logic requiring strong execution guarantees. Hardware failures, temporary outages, transient network issues, horizontal scaling of our application are all aspects that we need to plan with and in many cases explicitly deal with to make sure our user’s are not noticing any of it. The development of Golem Cloud started in 2023 with the idea that we can make this transparent; the developer writes code that deals with their business problem and is not polluted by the complex machinery to deal with all the mentioned problems. Today we can write Golem agents (not necessarily AI agents, but anything potentially stateful and long living ) in TypeScript and Rust and we get a lot of guarantees such as fault-tolerance, scaling, observability, inter-agent communication with exactly-once semantics and so on for free. In this talk I’m going to show some of these features of the latest version of Golem through code examples, explaining what Golem does behind the scenes and comparing it to how we could achieve the same guarantees on more traditional platforms.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7et00mvo16s0j3ystkj" data-score="17" data-title="Neal Ford&#x27;s Talk">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 17</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Neal Ford&#x27;s Talk <span class="tpill">16:00–16:45</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Neal Ford</span> · Distinguished Engineer at Thoughtworks</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Thoughtworks DE; co-creator of evolutionary architecture / fitness functions. 2026 topic TBA.</span></div>
+      
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7et00mto16sedehxgaz" data-score="12" data-title="Principle Misunderstandings">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 12</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Principle Misunderstandings <span class="tpill">16:00–16:45</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Kevlin Henney</span> · Technologist and Thought Provoker at Curbralan</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Editor &#x27;97 Things Every Programmer Should Know&#x27;; POSA series. Myth-busts how SOLID/DRY get misapplied.</span></div>
+      <details><summary>abstract</summary><div class="desc">For developers who want to improve their craft there&#x27;s no shortage of published, promoted and proclaimed principles they can choose from to shape their style and craft their code. Whether it&#x27;s the alphabet soup of SOLID principles or old school classics like Information Hiding and the Separation of Concerns, there&#x27;s a lot of advice out there. Some of it even makes sense. And some of it is well supported. But a lot of principles are misunderstood, misapplied or simply mistaken.In this talk we&#x27;ll take a look at (and take down) a few principles, highlighting the real lessons we can apply to our code — lessons supported by sound rationale rather than just strong opinions.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowv9tim00lto16skkitm01c" data-score="0" data-title="Learning Programming in the Age of AI">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Learning Programming in the Age of AI <span class="tpill">16:00–16:45</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Chelsea Troy</span> · Senior Staff Engineer, Instructor at Mozilla</div>
+      
+      <details><summary>abstract</summary><div class="desc">Modern junior programmers and CS graduate students don&#x27;t have the preexisting technical experience that footnotes blog posts about how much AI has helped professional engineers code. What skills do we focus on in class to help them enter this industry, and what does an AI-enabled tech industry have to teach us about how we learn?</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpgu66iw009pmn6rfsugm4u2" data-score="0" data-title="How to weigh AI, human intuition, and engineering?">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How to weigh AI, human intuition, and engineering? <span class="tpill">16:00–16:45</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Evelyn van Kelle</span> · Social scientists, change management consultant &amp; trainer at Xebia</div>
+      
+      <details><summary>abstract</summary><div class="desc">Evelyn van Kelle feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7et00muo16sep9s0arz" data-score="0" data-title="Taste: The main advantage in AI">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Taste: The main advantage in AI <span class="tpill">16:00–16:45</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Tejas Kumar</span> · Developer Advocate at IBM</div>
+      
+      <details><summary>abstract</summary><div class="desc">We’ve entered the era of “just add AI.” Slap a prompt box on it, ship it, call it intelligent. But the products people love don’t feel like AI demos. They feel obvious, fast, and considered. They have taste.Taste isn’t subjective fluff. It’s the difference between a streaming response that renders progressively and one that dumps text in a single repaint. It’s choosing to compose rich, interactive UI instead of defaulting to a chat window. In this code-heavy session, we’ll explore what taste actually means when building with AI: performance patterns, rendering decisions, and the product instincts that separate forgettable AI wrappers from tools people reach for every day.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">16:55–17:40</span><span class="slot-meta">6 sessions in parallel</span></div>
+<div class="cards">
+<div class="card high mine" data-id="cmowuxr1w00l5o16szb4pp4jb" data-score="45" data-title="Am I holding this right?">
+  <div class="crow">
+    <span class="badge high">★ High · 45</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Am I holding this right? <span class="tpill">16:55–17:40</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Daniel Terhorst-North</span> · Founder at Goalwards</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Originator of BDD; contrarian. Title = the iPhone-4 antenna meme — &#x27;we&#x27;re using AI wrong.&#x27;</span></div>
+      <details><summary>abstract</summary><div class="desc">&quot;Oh look, another session about AI! Your social media feeds are already flooded with agentic this and spec-driven that; one-shot rewrites and everyone-is-a-programmer-now.  I want to share some models and metaphors that are helping me make sense of this new world: why Ward Cunningham hates printers, how riding a fixie isn’t really cycling, why Claude is just a mercenary contractor, how test-first is the new TDD.  Beyond the hype, we should still care about iterative development, bounded contexts, decent tests, intention-revealing names. And AI is not going to replace junior developers any time soon, instead it is something... other. I don’t use genAI to go faster or produce more, at least not primarily. Instead it is helping me do &#x27;adjacent&#x27; things, allowing me to focus where I want to rather than where I otherwise would have to.  My goal is to give you a more nuanced take on generative AI, to help you cut through all the noise and get actual work done.&quot;</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7eu00n1o16sn6deadh9" data-score="45" data-title="Building the Verification Sandwich: Policy-as-Code for Every Agent">
+  <div class="crow">
+    <span class="badge high">★ High · 45</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Building the Verification Sandwich: Policy-as-Code for Every Agent <span class="tpill">16:55–17:40</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Matthew Maisel</span> · Co-founder and CTO at Sondera</div>
+      
+      <details><summary>abstract</summary><div class="desc">LLMs are powerful because their behavior emerges from billions of parameters. But they are untrustworthy for the same reason: their behavior is opaque, hard to inspect, and entangled. Changing one behavior with prompt engineering or fine-tuning will also affect others in difficult-to-predict ways. For high-stakes agentic systems, we need controls that are explicit, inspectable, and decoupled from the model.This talk applies autoformalization, the process of turning natural language instructions into formal specifications, to generate a verified authorization policy for every agent you ship. We anchor intent to system identifiers (grounding), use an LLM as a candidate policy generator (generation), and apply formal analysis via policy languages (verification) to forbid non-compliant or contradictory actions before they can execute.The result is the Verification Sandwich: a three-layer architecture and open source harness that turns an agent&#x27;s instructions and tools into policy-as-code that your security engineers can read and your agent hooks can enforce.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmpgubafw009xmn6r18zbwbby" data-score="29" data-title="Get your systems to define the story of your organization. Is it work surveillance, or hyperoptimized operational excellence?">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 29</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Get your systems to define the story of your organization. Is it work surveillance, or hyperoptimized operational excellence? <span class="tpill">16:55–17:40</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Klara Hermesz, Ádám Kovács</span> · Co-Founder &amp; Chief Learning Strategist at AI Enablement Academy</div>
+      
+      <details><summary>abstract</summary><div class="desc">Radical transparency at the organizational scale is a legitimate choice. Just look at Zuckerberg logging keystrokes, or  Benioff reading your Slack DMs. A similar approach to transparency, paired with intentionally targeted interjections prioritized based on impact opportunity, also helped us find that the client’s scale-up, org doesn&#x27;t need to spend 12,000 working days a year. 
+
+Most AI adoption produces faster individuals, not faster organizations. The knowledge stays in people&#x27;s heads and half-written docs. Agents deployed on top reproduce the same waste, just at a higher speed. The answer is the old principle applied with new infrastructure: eliminate, simplify, automate. Then standardize and operationalize what remains. Move it into skills, plugins, custom harnesses or orchestration layers and agentic swarms your systems can call.
+
+What the session covers:
+- Process and work discovery at the human and organizational level.
+- Ontologies, knowledge graphs, environmental and activity metadata.
+- Spotting and cutting inefficiencies: deciding what (and who) you don&#x27;t need, not just what you do. 
+- Evaluating and prioritizing what survives.
+- Building a multi-layer, multi-speed ingest and egest memory engine, with attribution at write-time, recency decay, self-improvement loops with a Karpathy-style auto-researcher on top.
+- Moving your knowledge base into plugins, harnesses and orchestration layers you own and control.
+- Workforce and organization redesign: the perfect startup team, 
+- Change management: who leads the redesign and who comes with them.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7eu00mzo16sayn7mnc4" data-score="27" data-title="An Introduction to Infrastructure for AI">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 27</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> An Introduction to Infrastructure for AI <span class="tpill">16:55–17:40</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Bryan Oliver</span> · Principal Architect at Thoughtworks</div>
+      
+      <details><summary>abstract</summary><div class="desc">In this talk, we&#x27;re going to look in detail at AI Infrastructure, and the nuances it presents to modern day engineers. The way we deploy and manage software on this type of platform is very different from the distributed systems you are used to, and it&#x27;s important to understand how they work, and how to deploy software to them, in a way that is efficient and cost effective. Consider that one rack of GB300s can cost millions, and the need to understand and optimize your software on these systems becomes immediately apparent!You&#x27;ll walk away with a solid foundational understanding of how AI Infrastructure works, and how you can start to approach using it.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7eu00n0o16s35nq7of9" data-score="18" data-title="From Templates to Conversations: Automating Support in Fintech">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 18</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Templates to Conversations: Automating Support in Fintech <span class="tpill">16:55–17:40</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Balázs Csintalan</span> · DTM, Senior Product Engineer at Wise</div>
+      
+      <details><summary>abstract</summary><div class="desc">Building AI-powered customer support in fintech isn’t just about integrating ChatGPT. It requires careful risk management, continuous impact validation, and pragmatic product decisions.In this talk, I’ll share how we built and rolled out automated chat support at Wise for its 15M+ customers over the past year - evolving from simple ML classification to full conversational agents. You’ll learn how we balanced innovation with caution in a regulated environment where mistakes can have high consequences.What You’ll Learn:- Incremental delivery strategies: How to ship AI capabilities step-by-step while proving value at each stage, rather than disappearing for months to build the perfect solution- Data-driven decision making: Using metrics to validate each evolution and know when to move forward- Risk management in production: Navigating compliance reviews, managing risks, and building safety nets for when things go wrong- Build vs. Buy tradeoffs: When to partner with specialized providers and when to invest in custom solutions - and how to do both simultaneously- Making AI work for your domain: Context engineering, knowledge base design, and adapting general-purpose LLMs to specific business needsThis isn’t a story about perfect execution - it’s about pragmatic product engineering in the real world, where you need to deliver value continuously while working toward ambitious goals.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7eu00myo16szpngzkrh" data-score="12" data-title="Justin Reock&#x27;s Talk">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 12</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Justin Reock&#x27;s Talk <span class="tpill">16:55–17:40</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Justin Reock</span> · Deputy CTO at DX</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">DX Deputy CTO; DX Core 4 (DORA+SPACE+DevEx). Measures AI&#x27;s impact on productivity. Talk TBA.</span></div>
+      
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">17:50–18:50</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmowuxs2c00l6o16sff9bpjal" data-score="0" data-title="Crossing the Line: What are you waiting for - and what would happen if you stopped?">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Crossing the Line: What are you waiting for - and what would happen if you stopped? <span class="tpill">17:50–18:50</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Veronica Clark</span> · Speaker- Author- Facilitator</div>
+      
+      <details><summary>abstract</summary><div class="desc">&quot;You already know what you need to do.  You’ve known for a while.  And you’re still waiting.  In Crossing the Line, Veronica Lynn Clark asks the question most of us spend our entire lives avoiding — not what do I want, but what is stopping me from going after it. Through raw honesty and stories earned from real experience, she challenges every person in the room to look at the moments they overrode themselves, and to consider what has been waiting on the other side of that choice all along.  This talk will not give you a framework. It will give you a mirror. And by the time you leave, you will know exactly what line you’ve been afraid to cross — and why today is the day to cross it.&quot;</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">18:50–19:30</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmpgrtign007umn6r7tzlhobf" data-score="0" data-title="📖 Book signing by Veronica Clark">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> 📖 Book signing by Veronica Clark <span class="tpill">18:50–19:30</span> <span class="loc lc-sponsor">Sponsor Arena</span></p>
+      <div class="cmeta"><span class="spk">Veronica Clark</span> · Speaker- Author- Facilitator</div>
+      
+      <details><summary>abstract</summary><div class="desc">Meet Veronica Clark at the Sponsor Arena next to the CraftHub booth for an exclusive signing session of To Be Aligned — limited signed copies available!</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">19:00–22:00</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmppm68ya000cs76urcbar2mb" data-score="0" data-title="Wine tasting">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Wine tasting <span class="tpill">19:00–22:00</span> <span class="loc lc-vip">Tech Leaders&#x27; Lounge</span></p>
+      <div class="cmeta"><span class="spk">—</span></div>
+      
+      <details><summary>abstract</summary><div class="desc">Join the Tech Leaders for a relaxing evening of networking and fine wine - hosted by Namaste &amp; Cabarnet</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<h2 class="day" id="fri">Fri Jun 05</h2>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">09:10–10:10</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card rel" data-id="cmowvh7eu00n3o16saucvziit" data-score="18" data-title="Forest &amp; Desert &amp; Genie">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 18</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Forest &amp; Desert &amp; Genie <span class="tpill">09:10–10:10</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Kent Beck</span> · Principal at The Critical Hire</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Creator of XP/TDD; now dogfooding &#x27;augmented coding&#x27; (agent = a junior with no taste) vs &#x27;vibe coding.&#x27;</span></div>
+      <details><summary>abstract</summary><div class="desc">In the Forest &amp; Desert, Bethany Andres-Beck identifies two stable attractors for software development:
+  * Forest--assume sufficient resources, freeing the team to create even more resources.
+  * Desert--assume scarcity, pressuring the team to consume irreplaceable resources &amp; limiting future options.
+
+What happens when we add augmented development to the Forest or the Desert? Amplification.
+
+This talk introduces the Forest &amp; Desert distinction, showing how augmented development affects both. We close with tips for moving from Desert to Forest aided by enlisting the Genie.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">10:30 →</span><span class="slot-meta">10 sessions in parallel · mixed lengths (see each card)</span></div>
+<div class="cards">
+<div class="card must mine" data-id="cmp2la8bz00wbo16syaql757z" data-score="64" data-title="What Do I Do With My Developers? Product Ownership, Agentic Craft, and Shifting Expectations">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 64</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> What Do I Do With My Developers? Product Ownership, Agentic Craft, and Shifting Expectations <span class="tpill">10:30–11:15</span> <span class="loc lc-vip">Tech Leaders&#x27; Lounge</span> <span class="tag mine">★ MY PICK</span></p>
+      <div class="cmeta"><span class="spk">Daniel Terhorst-North, Reuven Cohen, Gojko Adzic, Emese Pogácsás, Péter Szász</span> · Founder at Goalwards</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Originator of BDD; contrarian. Title = the iPhone-4 antenna meme — &#x27;we&#x27;re using AI wrong.&#x27;</span></div>
+      <details><summary>abstract</summary><div class="desc">New archetypes are reshaping what &quot;developer&quot; means in 2026. The product engineer owns outcomes end-to-end, talks to users, and ships without waiting for a PM. The agentic engineer orchestrates AI agents and treats prompt design as architecture. We&#x27;ll dig into how to hire, motivate, retain, challenge and mentor these new kinds of developers — and whether the answers differ depending on which archetype is sitting across from you.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7eu00n4o16s2o18jcgj" data-score="41" data-title="Working Effectively with AI-Generated Code">
+  <div class="crow">
+    <span class="badge high">★ High · 41</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Working Effectively with AI-Generated Code <span class="tpill">10:30–11:10</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Michael Feathers</span> · Founder at R7K Research &amp; Conveyance</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Wrote Working Effectively with Legacy Code; new book on AI-Assisted Programming. Thesis: AI code = the new legacy code.</span></div>
+      <details><summary>abstract</summary><div class="desc">Understanding the system we are about to change has always been one of the hardest parts of software development. For decades we&#x27;ve developed practices - reading tests, sketching dependencies, talking to the people who built it - to recover the theory of a system before we touch it. AI has scrambled this. It can help us understand code faster than ever, and it can also produce code faster than we can understand it. The same tool sits on both sides of the comprehension problem.
+
+This creates a new kind of debt. Technical debt is visible in the code; comprehension debt is invisible until something breaks, and you can&#x27;t refactor your way out of it — you have to learn your way out, which is harder than writing the code was in the first place. Meanwhile, the skills that let us intervene confidently in complex systems are the same skills that atrophy when we stop exercising them.
+
+In this talk I&#x27;ll work through where AI helps us understand systems, where it quietly hinders us, and what it means to stay &quot;in the loop&quot; as a developer when the loop is optional. I&#x27;ll share practices I&#x27;ve been using and seeing others use — hypothesis-first reading, having the AI quiz you on the systems it generates, adversarial explanation, and comprehension reviews - that keep authorship and understanding with the humans who have to live with the code. The goal isn&#x27;t to slow down. It&#x27;s to make sure that when something goes wrong someone still knows what the system actually does.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7ev00nao16sregvxw7z" data-score="18" data-title="Patterns for Coding with AI">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 18</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Patterns for Coding with AI <span class="tpill">10:30–12:15</span> <span class="loc lc-green">Green stage</span></p>
+      <div class="cmeta"><span class="spk">Lada Kesseler</span> · Principal Engineer at Logic20/20</div>
+      
+      <details><summary>abstract</summary><div class="desc">If coding with Generative AI sometimes feels brilliant and sometimes frustrating, you&#x27;re not alone. This workshop walks you through a map of the patterns that make it more powerful and predictable, from first experiments to advanced techniques.We&#x27;ll explore the inherent limitations of Generative AI alongside the new possibilities it creates - examining not just whathappens, but why it happens. Understanding these underlying dynamics equips you to adapt and combine patterns in powerful ways and come up with your own solutions. Real-world examples will show some of these combinations in action.You&#x27;ll leave with techniques that aren&#x27;t tied to any single LLM or coding agent - practical approaches you can apply immediately, as well as the mental models that keep you effective in this rapidly changing landscape.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmpb9exsf000mn56s4q4t0880" data-score="14" data-title="Artificial Intelligence, Actual Culture: Renegotiating Work in the AI Era">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 14</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Artificial Intelligence, Actual Culture: Renegotiating Work in the AI Era <span class="tpill">10:30–11:15</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Zach Pendleton</span> · Chief Architect at Instructure</div>
+      
+      <details><summary>abstract</summary><div class="desc">Almost four years since the release of ChatGPT, the AI conversation remains stuck between utopian hype and apocalyptic panic. Meanwhile, its actual impact is messier and more mundane: AI isn&#x27;t disappearing and isn&#x27;t taking your job — it is, though, changing what &quot;doing your job&quot; means.
+
+For every story about AI-powered 10x engineers there is another team of engineers drowning in review queues and questioning if their work matters. For every generated artifact that saves time there is a river of AI slop that someone else has to clean up, rewrite, or explain to stakeholders who don&#x27;t understand why &quot;just use AI&quot; didn&#x27;t work.
+
+The current AI challenge is clearly cultural. How do we define productivity when the
+
+metrics have changed? What does quality mean when AI can generate something that looks good enough? How do teams maintain purpose when the feedback loops that we used to build relationship and develop our skills have collapsed?
+
+In this session, we&#x27;ll examine what is actually happening in organizations navigating this shift. Drawing from real cases in universities and enterprises, we will learn from places where AI adoption has forced uncomfortable conversations about process, humanity, and value in work.
+
+You&#x27;ll learn:
+
+- How to adapt your SDLC when AI moves the bottleneck
+
+- Practical frameworks for having honest conversations about AI-assisted work
+
+- Why culture matters more than tooling
+
+- How organizations are rethinking career progression
+
+- Where human judgment matters most (and how to protect it)
+
+If you&#x27;re tired of AI conversation that ignores the hard parts, this session will provide a practical perspective on building teams for the business and not just the demo.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7ev00n9o16ss017s6lc" data-score="12" data-title="From Idea to Event Model to Code - and Back">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 12</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Idea to Event Model to Code - and Back <span class="tpill">10:30–11:15</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Martin Dilger</span> · Author, CEO at Nebulit GmbH</div>
+      
+      <details><summary>abstract</summary><div class="desc">A Structured Approach to Building Scalable Systems with Event Modeling, Event Sourcing, and Agentic Coding
+
+What if your requirements were something you could run?
+
+Most teams play an expensive telephone game: ideas become written specs, specs become tickets, tickets become code — and somewhere along the way, the original intent gets lost. The result is systems that surprise their builders and disappoint their users.
+
+In this talk, we show a different path.
+
+By combining Event Modeling and Event Sourcing, teams can build a shared, visual understanding of a system before a single line of production code is written. The model captures behavior, decisions, and data flow in a way that everyone - engineers and business stakeholders alike - can read, challenge, and refine.
+
+But the model doesn&#x27;t stop at documentation. It becomes a living specification: the single source of truth that drives code generation and acts as the foundation for agentic coding. When the model changes, the system changes with it - not the other way around.
+
+The result is a development loop where:
+
+Models don&#x27;t rot — they&#x27;re actively worked on, not archived
+
+The model is the source of truth - understood by business, engineering and management
+
+Changes are welcome - they extend systems rather than breaking them
+
+We&#x27;ll close with a live demonstration of the full loop: from idea to visual model, from model to generated code, and back again - showing how teams can move faster, with more clarity, and far less guesswork.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ev00n6o16spk2lg6wm" data-score="3" data-title="TDD in the AI Era: No Vibes, Just Velocity">
+  <div class="crow">
+    <span class="badge low"> Low fit · 3</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> TDD in the AI Era: No Vibes, Just Velocity <span class="tpill">10:30–12:15</span> <span class="loc lc-focus">Focus Platform</span></p>
+      <div class="cmeta"><span class="spk">Barry S. Stahl</span> · Co-Founder at AZGiveCamp</div>
+      
+      <details><summary>abstract</summary><div class="desc">Test‑Driven Development (TDD) has been a stalwart of software engineering for years, delivering reliable, modular code that stands the test of time. As we enter the AI era, TDD isn’t just enduring, it’s evolving. Modern AI capabilities are accelerating the TDD workflow, helping developers explore edge cases, reason about refactoring options, and tighten feedback loops without compromising the discipline that makes TDD effective.This extended, hands‑on session is designed to start your journey into AI‑assisted TDD. We will examine how AI can influence each stage of the TDD cycle and explore the opportunities and tradeoffs that come with integrating these tools into your development practice. Attendees will have time to experiment with the ideas presented and reflect on how AI‑supported workflows might fit into their own environments.Because every team has different constraints, risk tolerances, and levels of confidence in model behavior, this session does not prescribe a single workflow. Instead, it provides starting points, evaluation criteria, and practical guidance to help you develop an approach that aligns with your needs. You will leave with a clearer understanding of how to introduce AI into your TDD practice responsibly and how to evolve your process as your confidence and requirements change.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7eu00n5o16so9n55auw" data-score="0" data-title="Fully Automated Luxury Gay Space Communism: a brief how-to">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Fully Automated Luxury Gay Space Communism: a brief how-to <span class="tpill">10:30–11:15</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Ashi Krishnan</span></div>
+      
+      <details><summary>abstract</summary><div class="desc">Shortly, we are told, machines will be doing all useful work and we will live in a fully automated paradise. How is that going to happen, exactly?</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpwpep5o004mom6t565i0u2w" data-score="0" data-title="How to Stay Human in a High-Pressure World">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How to Stay Human in a High-Pressure World <span class="tpill">10:30–11:15</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Kenny (Baas) Schwegler, Joseph Pelrine</span> · Software Architecture Catalyser, Collaborative Software Designer, Trainer and Author at DHL &amp; Weave IT B.V.</div>
+      
+      <details><summary>abstract</summary><div class="desc">Joseph Pelrine &amp; Kenny (Baas) Schwegler feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ev00n8o16s45o0ml8y" data-score="0" data-title="Team dynamics after AI">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Team dynamics after AI <span class="tpill">10:30–11:15</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Duncan Brown</span> · CTO for Digital Prevention at NHS England</div>
+      
+      <details><summary>abstract</summary><div class="desc">What happens when you try to build digital public services using AI? Since GOV.UK was founded in 2012, multidisciplinary teams combining engineers, researchers, designers and policy people have produced world-class services in the UK. The advent of AI threatens to upend that delivery model, breaking ecosystems and business models that have enabled software to work for the public. This talk, based on direct experience in the British Government&#x27;s Incubator for AI, looks beyond hype and speculation to reveal what actually happens when you try to ship more and faster with AI.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ev00n7o16srp4lxs4g" data-score="0" data-title="The Art of Pairing with Human (and Artificial) Intelligence">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> The Art of Pairing with Human (and Artificial) Intelligence <span class="tpill">10:30–11:15</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Ilyas Landikov</span> · Software Engineer</div>
+      
+      <details><summary>abstract</summary><div class="desc">When we work with another person, we constantly adjust through their emotions - that feedback loop helps us stay aligned and think together.With AI, that loop is missing and nothing pushes back.Whatever you bring into AI, it will amplify—and as it improves, that amplification only grows stronger.Will you keep up?</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">11:00–12:00</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmpfbogqz000clm6wwhdrkd0o" data-score="3" data-title="AI@Allianz: Shape the Future – Challenge Our Next AI Initiatives">
+  <div class="crow">
+    <span class="badge low"> Low fit · 3</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI@Allianz: Shape the Future – Challenge Our Next AI Initiatives <span class="tpill">11:00–12:00</span> <span class="loc lc-work">Central Workshop Area</span> <span class="tag ws">workshop · separate signup</span></p>
+      <div class="cmeta"><span class="spk">Balázs Bábos, Zoltán Kukovecz</span> · Chief Architect at Allianz</div>
+      
+      <details><summary>abstract</summary><div class="desc">Your AI strategy has gaps. We know. We drew the map.
+
+In this interactive workshop, we put Allianz&#x27;s AI framework on trial — literally. You&#x27;ll be handed an AI Layers Map with deliberate blank zones (Exhibit A through D), assigned a role — Prosecutor, Defender, or Jury.
+
+Then court is in session.
+
+The charges are real: the measurement void, the local-global fault line, the human transformation gap, and the layer nobody wants to name. The expert witnesses (that&#x27;s us) will be called to testify. We will not make it easy.
+
+By the end of the hour, the room will have collectively filled — or demolished — the map. You&#x27;ll leave with a co-created AI strategy artefact, a clear answer to &quot;what should come next?&quot;, and a working knowledge of how Allianz thinks about AI adoption, impact, and the future of work.
+
+Court is now in session. Objections welcome.
+
+Register here: https://luma.com/9g5u67tp</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">11:30–12:15</span><span class="slot-meta">7 sessions in parallel</span></div>
+<div class="cards">
+<div class="card high" data-id="cmowvh7ew00nfo16syyivasw0" data-score="47" data-title="AI-Friendly Code: Your Code Is an AI Crime Scene">
+  <div class="crow">
+    <span class="badge high">★ High · 47</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI-Friendly Code: Your Code Is an AI Crime Scene <span class="tpill">11:30–12:15</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Adam Tornhill</span> · Founder &amp; CTO at CodeScene</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">CodeScene founder; Code Health metrics. AI = a force multiplier on existing tech debt; quantifies &#x27;AI-friendliness.&#x27;</span></div>
+      <details><summary>abstract</summary><div class="desc">Have you seen early productivity gains from AI, only to watch them disappear under growing complexity and production incidents? You&#x27;re not alone. There&#x27;s a common reason. Many production systems already struggle with technical debt. When AI agents enter the development loop, that debt becomes a multiplier. Poor-quality code not only increases defects and costs. It dramatically raises AI risk by driving high breakage rates and turning promising AI agents into legacy code generators rather than genuine help.Fortunately, there&#x27;s hope on the horizon. In this talk, Adam Tornhill builds on the ideas from Your Code as a Crime Scene to show how organizations can achieve both speed and quality with AI. Backed by large-scale empirical studies on AI coding and developer productivity, we separate what works from what doesn&#x27;t in real-world systems. Building on these findings, we look at a practical framework for driving and sustaining AI-friendly code at scale. The AI revolution is here. Is your code ready? The evidence is already there.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7ev00nco16szb89z7j0" data-score="38" data-title="Governance Without the Red Tape">
+  <div class="crow">
+    <span class="badge high">★ High · 38</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Governance Without the Red Tape <span class="tpill">11:30–12:15</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Sarah Wells</span> · Independent Tech Consultant, Author of Enabling Microservice Success</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Ex-FT (drove 12 → 20,000+ releases/yr); author Enabling Microservice Success. Lightweight governance via automated guardrails.</span></div>
+      <details><summary>abstract</summary><div class="desc">When you hear “governance,” you might think of red tape, bureaucracy, or someone telling you what you can’t do. But real governance is about alignment and reducing technical risk. And that matters more than ever.
+
+In most cases, engineers aren’t deliberately making risky decisions—they just don’t have clear expectations. That’s where good governance comes in. It ensures everyone understands what “good” looks like, gives teams the autonomy to move fast while staying on course, and provides built-in mechanisms to self-correct before small missteps become big problems.
+
+In this talk, I’ll break down how to implement governance that actually helps, not hinders, including:
+
+Understanding what’s in your software estate
+
+Building guardrails and policies that work - and automating them!
+
+Aligning technology decisions across teams
+
+Making smart technology choices - and why “boring” is often best
+
+If you want to reduce risk, improve decision-making, and keep your organization running smoothly—without slowing your teams down—this session is for you.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7ew00neo16s97yp3q0w" data-score="38" data-title="How Durable Computing is Reshaping Distributed Systems">
+  <div class="crow">
+    <span class="badge high">★ High · 38</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How Durable Computing is Reshaping Distributed Systems <span class="tpill">11:30–12:15</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Jeremy Edberg</span> · CEO at DBOS</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">DBOS CEO; ex-Netflix / reddit. Durable execution — exactly-once workflows without retry/saga glue.</span></div>
+      <details><summary>abstract</summary><div class="desc">Most production code is not business logic. It is code that exists because the runtime forgets things.
+
+Retries, because a request might fail. Status tables, because a process might crash. Queues with dead-letter queues next to them because delivery is not guaranteed. Reconciliation jobs because state drifts. Cron sweepers because nothing stays consistent on its own. None of it is the product. All of it has to work.
+
+That stack did not get designed, it got accumulated one outage at a time, by engineers who were trying to ship the actual product and kept getting interrupted by the runtime not remembering what happened.
+
+The constraint that created it — compute was stateless because keeping state was expensive — is not as true as it used to be. Storage is cheap, Postgres is everywhere, and networks are fast enough that moving data isn’t as expensive as it used to be. The new approach is to make the runtime responsible for durability instead of making every application rebuild it from scratch.
+
+This talk covers how we got here and the two ways to build it:  the workflow-service model, where a separate service owns execution history and coordinates workers, and the application-as-coordinator using the database as the central storage.
+
+Then it gets to AI agents, which are the reason this is more urgent now than it was five years ago. Agents call tools, wait on humans, spend real money, and make decisions that are hard to reproduce. Once those decisions are recorded, yesterday&#x27;s nondeterminism is today&#x27;s history. You can replay it, fork from any step, and debug without triggering the side effects again.
+
+Once compute is durable, orchestration stops being infrastructure and becomes code.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmpb9jfcf000nn56su0v6jd50" data-score="30" data-title="Tier 0 Engineering at Tesco Technology">
+  <div class="crow">
+    <span class="badge high">★ High · 30</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Tier 0 Engineering at Tesco Technology <span class="tpill">11:30–12:15</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">János Csorvási, Julia Raksimowicz</span> · Software Engineer at Tesco Technology</div>
+      
+      <details><summary>abstract</summary><div class="desc">What happens when every API call across a £60 billion retailer flows through your system and a single bad configuration change could take it all down?
+
+At Tesco, more than 5 billion requests per day from devices in more than 40,000 stores worldwide, from our online grocery and retail webshops, and from hundreds of internal services pass through a single platform: Inter-Service Communication (ISC). It is classified as Tier 0 because if we’re down, the whole of Tesco is down.
+
+So how do you change a system like that? Continuously, safely, and without anyone being woken up at 3 AM? How do you guarantee 99.999% availability?
+
+In this talk, we&#x27;ll walk you through the production engineering practices that let a small team operate ISC with confidence:
+
+- Cell-based rollouts with automated rollback. Our deployment pipeline deploys to one cell at a time, runs integration and end-to-end tests against that cell, checks canary metrics, and only proceeds to the next cell if everything passes. If any cell fails, the pipeline automatically reverts every cell to the last known-good version — no human in the loop.
+
+- Dry-run validation against a real proxy. Every configuration change submitted by our users is tested against a live Envoy sidecar before it touches production. Static validation catches syntax; the dry-run catches the things static validation can&#x27;t — subtle interactions between routes, TLS settings, and cluster definitions.
+
+- Synthetic monitoring that is the SLI. A dedicated service continuously probes every traffic path — same-region, cross-region, cross-subscription, public through the CDN, on-prem datacentres to cloud — and those probe results are the service level indicators our SLOs are built on.
+
+- Distributed, proportionally-fair rate limiting. Rate-limiting sidecars on every gateway report real-time usage to the control plane, which calculates each sidecar&#x27;s fair share of the global limit and pushes it back down — adapting continuously to shifts in traffic distribution.
+
+- Incident tooling built for speed. DNS-based region and cell failover, pipeline-managed deployment locks, and disaster recovery that backs up to a completely independent storage system — so recovery doesn&#x27;t depend on the thing that broke.
+
+We&#x27;ll also share ISC&#x27;s journey: how the platform evolved from a simpler proxy layer to where it is today, what we got wrong along the way, and the organisational patterns that make Tier 0 ownership sustainable for a small team.
+
+You&#x27;ll leave with concrete, transferable patterns for deploying safely, validating ruthlessly, and building the observability that lets you trust your system — whether you run a service mesh, an API gateway, or anything else that simply cannot go down.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ev00nbo16sk5ob973g" data-score="0" data-title="114 Miles to the Final Cut">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> 114 Miles to the Final Cut <span class="tpill">11:30–12:15</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Nickolas Means</span> · Engineering Manager, Ruby Infrastructure at Shopify</div>
+      
+      <details><summary>abstract</summary><div class="desc">In the spring of 2002, Walter Murch, a three-time Oscar winner and the most respected film editor alive, got news he wasn&#x27;t expecting. He had just persuaded the producers of Cold Mountain to let him edit the film entirely on Apple&#x27;s Final Cut Pro. It would let him do things no traditional editing system could, but no one had ever attempted it on a major motion picture. Now Apple was telling him the software wasn&#x27;t ready yet, and they couldn&#x27;t support him if he proceeded.Murch did it anyway. His team packed up a rack of off-the-shelf Macs, shipped them to the set in Romania, and built an editing system from scratch in a country where nobody could help them if it broke.Murch bet his reputation on a $999 tool that not even its maker thought was ready. He saw what Apple couldn&#x27;t, and the way he acted on that vision is a pretty good blueprint for anyone looking to ride a wave of disruption instead of getting swept aside by it.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpmmh4ck006ynv6s3388ylw6" data-score="0" data-title="What will happen with juniors now?">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> What will happen with juniors now? <span class="tpill">11:30–12:15</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Péter Szász, Emese Pogácsás</span> · Engineering Leader</div>
+      
+      <details><summary>abstract</summary><div class="desc">Emese and Eszpé feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ev00ndo16s9x0sfrn0" data-score="0" data-title="Christopher Grainger&#x27;s Talk">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Christopher Grainger&#x27;s Talk <span class="tpill">11:30–12:15</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Christopher Grainger</span> · Co-Founder at Amplified</div>
+      
+      
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">13:45 →</span><span class="slot-meta">10 sessions in parallel · mixed lengths (see each card)</span></div>
+<div class="cards">
+<div class="card must" data-id="cmp109cwg00ujo16swerlzmzo" data-score="112" data-title="Keeping humans in the loop with AI coding agents">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 112</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Keeping humans in the loop with AI coding agents <span class="tpill">13:45–14:30</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Gojko Adzic</span> · Author and Consultant at Neuri Consulting LLP</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Specification by Example / Impact Mapping author. Agents usable only behind executable specs + verification gates.</span></div>
+      <details><summary>abstract</summary><div class="desc">With AI coding agents becoming increasingly popular, the big challenge becomes how to stay in control while harnessing the power of AI assistance. In this talk, Gojko presents the results of an industry research of early adopters of AI coding agents, who found ways to systematically apply structured engineering practices and keep humans in the loop, but avoiding AI slop. Vibe coding can significantly cut time to a prototype, but it can also create an unmaintainable mess. Learn how to add guardrails and constraints to automated AI coding agents, so they can produce code as good as humans, but significantly faster. Find out good patterns and practices how to keep humans in the loop to make the key decisions, and create effective feedback cycles to keep AI agents on the right path.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card must" data-id="cmowvh7ew00njo16s9u176ld2" data-score="68" data-title="Staying at the Exponential: Mastering Claude Code">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 68</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Staying at the Exponential: Mastering Claude Code <span class="tpill">13:45–14:30</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Kashyap Murali</span> · Claude Code Team Member at Anthropic</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Anthropic, Claude Code team — first-party insider on the tool you use daily; expect CLAUDE.md / subagents / skills workflow patterns.</span></div>
+      
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7ew00nio16s3d54h6kk" data-score="49" data-title="Quality Engineering in the Agentic Age: Build, Test, Orchestrate">
+  <div class="crow">
+    <span class="badge high">★ High · 49</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Quality Engineering in the Agentic Age: Build, Test, Orchestrate <span class="tpill">13:45–15:35</span> <span class="loc lc-focus">Focus Platform</span></p>
+      <div class="cmeta"><span class="spk">Dragan Spiridonov</span> · Founder &amp; Agentic Quality Engineer at Quantum Quality Engineering Petrovaradin</div>
+      
+      <details><summary>abstract</summary><div class="desc">The AI testing landscape is drowning in promises: &quot;autonomous testing,&quot; &quot;self-healing tests,&quot; &quot;AI-generated coverage.&quot; After a year of building production agentic systems and watching teams struggle to move past demos, I&#x27;ve learned what actually works—and what&#x27;s still vendor theater.This hands-on tutorial cuts through the noise. You&#x27;ll work with the open-source Agentic QE Fleet and Claude Code, progressing through three phases:Build — Extend the Agentic QE Fleet to fit your context. You won&#x27;t just run existing agents—you&#x27;ll create or customize specialized agents that address your team&#x27;s specific quality challenges. Learn the architectural patterns that make agents maintainable, not magical black boxes.Test — Put agents to work on real artifacts. Use Agentic QE agents and skills to verify human-written code, validate agent-generated outputs, and catch the subtle failures that slip past traditional automation. Experience how agents and humans collaborate to find what neither would catch alone.Orchestrate — Coordinate your quality ecosystem using PACT principles (Proactive, Autonomous, Collaborative, Targeted). Integrate the fleet into CI/CD pipelines, IDE workflows, or standalone exploration sessions. The same agents work across contexts—the orchestration determines the value.You&#x27;ll leave with:A customized agent extending the Agentic QE FleetHands-on experience testing both human and AI-generated artifactsIntegration patterns for embedding Agentic QE into your workflowWho should attend: Engineers, architects, and tech leads ready to move beyond AI demos into production-ready quality workflows.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7ew00nlo16s97h1uets" data-score="14" data-title="AI Native Engineering">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 14</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI Native Engineering <span class="tpill">13:45–14:30</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Ian Thomas</span> · Software Engineer at Meta</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Meta Reality Labs; ran an AI-for-productivity programme, built an &#x27;Assess &amp; Grow&#x27; maturity model, grew an AI-eng community 0→400+.</span></div>
+      <details><summary>abstract</summary><div class="desc">In May 2025, a small group of engineers inside Meta&#x27;s Reality Labs asked a simple question: how can AI actually help us hit our engineering goals? Seven months later we had a 400-person community, a maturity framework, and hard data on what worked: 80% time savings on specific workflows, 81% weekly tool adoption, and replicable patterns for test coverage, large-scale refactoring, custom context integration and autonomous code fixes.That was December. Since then the models have got better, I&#x27;ve moved to a different part of Meta, and some of the things I was confident about have aged badly. Others have held up well.I&#x27;ll share the patterns that reliably delivered results, the maturity model we used to help teams assess and grow, and the leadership strategies that turned scattered experimentation into systematic adoption. I&#x27;ll also talk about what we got wrong: the trust and quality problems that dominated workshop discussions, the code review bottleneck that AI-generated diffs created, and why we threw out our original metrics.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmppk4xq601vfpa6poi0qona6" data-score="8" data-title="Use AI Potential, Build Organizational Capability">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 8</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Use AI Potential, Build Organizational Capability <span class="tpill">13:45–14:30</span> <span class="loc lc-work">Central Workshop Area</span> <span class="tag ws">workshop · separate signup</span></p>
+      <div class="cmeta"><span class="spk">Ádám Molnár</span> · AI Architect &amp; CTO at 1337 Partners</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI demos are easy. Turning AI into repeatable organizational capability is the hard part.
+
+
+This workshop introduces the AI Leverage Matrix. 
+
+A framework for diagnosing AI adoption across three levels: the tool, the individual, and the organization. 
+
+We borrow unit, integration, and end-to-end thinking from engineering and apply it as a diagnostic for your team&#x27;s AI capability.
+
+
+Participants leave with the AI Leverage Test Suite: a diagnostic you can run with your team after the conference. 
+
+Each test is useful even when it fails. A failed test is a signal and a patch worth shipping.
+
+You will learn how to
+- Use the AI Leverage Matrix as a mental model
+- Distinguish AI tool adoption from real organizational capability
+- Diagnose AI readiness across three levels
+- Identify the bottleneck that blocks repeatable value
+- Define a small, testable next step
+
+Register here: https://luma.com/yk72or9z</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7ew00nko16soofo7j66" data-score="7" data-title="Careless by Design: AI with Zero Bugs in Ugly Code">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 7</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Careless by Design: AI with Zero Bugs in Ugly Code <span class="tpill">13:45–14:30</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Arlo Belshee</span> · Fractional CTO &amp; Advisor, Distinguished Engineer at Eolus.ai</div>
+      
+      <details><summary>abstract</summary><div class="desc">You swapped work-toil for vigilance-toil. Watching AI closely enough that nothing goes wrong is still toil. More stressful, less interesting toil.
+
+AIs are fast enough that even rare risks happen too often. Even a small failure rate demands constant vigilance, which defeats the point. Low risk isn&#x27;t enough to delegate safely. We need a known class of operations with zero risk.
+
+The exit is Careless Design: build the agent&#x27;s world so careless behavior still succeeds. That&#x27;s different from making AI more capable.
+
+This session maps the agency delegation model, from human-does-everything to AI-holds-operational-agency. We work through what makes each level safe: narrow tools, deterministic workflows, deliberately scoped context. We do this in ugly brownfield code, where the hazards are sharpest.
+
+#ZeroBugs has applied this to human developers for a decade. When someone makes a mistake, don&#x27;t ask them to be more careful. Instead, improve the environment so that even more careless behavior would still succeed. Now it applies to agents.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ew00nmo16sdnt1i3wm" data-score="0" data-title="The Eight Desires Workshop">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> The Eight Desires Workshop <span class="tpill">13:45–15:35</span> <span class="loc lc-green">Green stage</span></p>
+      <div class="cmeta"><span class="spk">Veronica Clark</span> · Speaker- Author- Facilitator</div>
+      
+      <details><summary>abstract</summary><div class="desc">Most of us are excellent at one or two areas of our lives and quietly neglecting the rest. In this session, Veronica Lynn Clark guides you through her signature Eight Desires framework with curiosity and courage. Come ready to roll up your sleeves. Through bold imagination, unexpected insight, and writing you didn’t know you needed, you will identify the area of your life that is asking for your attention, dream without apology into what it could become, and leave with a concrete first step — and a completely new sense of what becomes possible when you are brave enough to cross the line.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpmmvdpc0075nv6sf147rt2t" data-score="0" data-title="Monte Carlo for SaaS: Simulating The Effect Of Product Decisions">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Monte Carlo for SaaS: Simulating The Effect Of Product Decisions <span class="tpill">13:45–14:30</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Zoltán Dávid</span> · Co-Founder &amp; Director of Strategy at ConfigCat</div>
+      
+      <details><summary>abstract</summary><div class="desc">Most SaaS growth discussions treat acquisition, activation, retention, monetization, and referral as separate metrics. In reality, they interact as a system. A small change in one conversion point can compound through the whole lifecycle, while a seemingly important metric may have little effect on long-term outcomes.
+
+In this talk, I will show a Monte Carlo simulator for modeling a B2B SaaS as a state machine.
+
+By running many simulations across different SaaS models, we can compare which conversion points have the largest impact on growth, revenue, and customer base size. The goal is not to predict the future exactly, but to reason more clearly about leverage: where improving the product is likely to matter most.
+
+The session is aimed at builders, engineers, and product people who want a more systematic way to think about SaaS growth than funnel charts alone.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ew00nho16s44uco004" data-score="0" data-title="Computer vision beyond cameras - how robots can see with radars?">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Computer vision beyond cameras - how robots can see with radars? <span class="tpill">13:45–14:30</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Andras Palffy</span> · Co-Founder, reseracher at Perciv AI</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI is all around us in the digital world. It helps write our emails, schedule our calendars, take better selfies. We accepted Ai into our digital life, and it is very comfortable in the digital world.But what about our real life in the real physical world? We were promised self-driving cars, delivery robots and drones, and robot servants to make our life easier in the real world too. But they are still not really here.The reason is simple: the physical world is really hard. So hard in fact, that there is a separate phase for the efforts and field trying to solve it: Physical AI is taking AI into the real world, solving real problems.What is needed for a robot using physical AI? No matter the exact task and exact robot -every robot has to understand - perceive - its environment, in any weather, day and night, with a sensor setup that makes it affordable to scale.While cameras and lidars are widely used, the oldest sensor - radar - is a bit forgotten these days. In this talk, we will discuss its benefits, disadvantages, and how dedicated radar AI can make them very useful for robots on-road, off-road, indoors, or in-air!</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmp2mwzvx00weo16spla1joiv" data-score="0" data-title="How to plug AI into your team? Practical tips">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> How to plug AI into your team? Practical tips <span class="tpill">13:45–14:30</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Xin Yao</span> · Sociotechnical architect &amp; Change Facilitator at Ypma Consulting</div>
+      
+      <details><summary>abstract</summary><div class="desc">Xin Yao feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">14:50–15:35</span><span class="slot-meta">7 sessions in parallel</span></div>
+<div class="cards">
+<div class="card high" data-id="cmowvh7ex00noo16syb8hmo8f" data-score="45" data-title="Platform as a Product: A dive into the Technical Foundations">
+  <div class="crow">
+    <span class="badge high">★ High · 45</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Platform as a Product: A dive into the Technical Foundations <span class="tpill">14:50–15:35</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Abby Bangser</span> · Founding Principal Engineer at Syntasso</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Syntasso / Kratix; CNCF Platforms WG co-lead. Platform-as-a-product + the technical foundations.</span></div>
+      <details><summary>abstract</summary><div class="desc">There’s no shortage of advice urging platform teams to treat their internal platform like a product, emphasising user empathy, prioritising value over requests, and building trust through consistent care. These are essential practices, but most conversations lean heavily into the socio side of the socio-technical balance.This talk shifts the spotlight to the technical side of platform-as-a-product. Abby will explore what Developer Experience (DevEx) looks like for platform builders themselves, and the often-overlooked technical foundations that make great internal platforms possible.Topics will include:- What observability and testability look like in a platform- How architectural principles (like service design and interface boundaries) shape platform resilience and usability- The tooling and feedback loops platform teams need to stay effectiveIf you’re building internal tools and infrastructure, this talk is for you. Let’s talk about improving your developer experience.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmpmml5uv0073nv6sh02hhw2f" data-score="30" data-title="State of Engineering Management">
+  <div class="crow">
+    <span class="badge high">★ High · 30</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> State of Engineering Management <span class="tpill">14:50–15:35</span> <span class="loc lc-podcast">Podcast stage</span></p>
+      <div class="cmeta"><span class="spk">Gergely Orosz</span> · Software Engineer &amp; Author at The Pragmatic Engineer</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Pragmatic Engineer (1M+ readers). Talk maps to his Jun 2 post: 2x code volume via agents → quality/debt risk; slow down to speed up.</span></div>
+      <details><summary>abstract</summary><div class="desc">Gergely Orosz feat. AVK Podcast</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmowvh7ex00nno16siid59qc2" data-score="26" data-title="Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 26</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw <span class="tpill">14:50–15:35</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Aaron Erickson</span> · Author, AI Lab Senior Manager at NVIDIA</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">NVIDIA AI Lab; built NemoClaw. Pairs deterministic tools (certainty) with probabilistic agents (discovery).</span></div>
+      <details><summary>abstract</summary><div class="desc">AI agents are powerful because they are not just deterministic software components. They can explore, investigate, synthesize, recover, and adapt. That is exactly what makes them useful, and exactly what makes them hard to trust.
+
+The mistake is trying to force agents to behave like traditional software. The better pattern is to give each part of the system the job it is good at: tools for certainty, claws for discovery, and an architecture that keeps the loop grounded in reality.
+
+This talk tells the story of NemoClaw: how it started, what we learned while building it, and why it changed the way we think about agentic engineering systems. NemoClaw brings together OpenClaw, Hermes, OpenShell, local inference, policy controls, sandboxed execution, credentials management, and lifecycle tooling to make always-on agents more practical in real engineering workflows.
+
+We will go into what NemoClaw does and why it matters. What makes “claw style” agents different? How do we let agents act without giving them unlimited trust? How does a sandboxed shell change the safety model? What belongs in policy? What should be routed through deterministic tooling? What should be left to probabilistic exploration? And how do we give them memory, in a manner that allows them to fufilly the promise of being the first kind of software that truly gets better with use.
+
+I will also share how we use claws in our own engineering pipeline. We use agentic workflows to build, test, debug, evaluate, and harden NemoClaw itself. That feedback loop has become one of the clearest signs of where this is going: the best agent platforms will not just run agents, they will help improve the systems they are part of.
+
+The broader vision for NemoClaw is to make agentic software feel less like bespoke magic and more like an engineering substrate. Not a chatbot bolted onto a workflow, and not an unconstrained agent wandering through production, but a composable system where agents discover, tools verify, policies constrain, and feedback loops improve the result over time.
+
+Attendees will leave with a practical mental model for building reliable agentic systems: when to use tools, when to use claws, where to put boundaries, and how to move from “the agent did something interesting” to “the agent is part of how we build software.”</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7ex00nqo16sozdidjzm" data-score="12" data-title="Kief Morris&#x27; Talk">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 12</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Kief Morris&#x27; Talk <span class="tpill">14:50–15:35</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Kief Morris</span> · Distinguished Engineer at Thoughtworks</div>
+      
+      
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmpphhktj009zpa6pbruljq5y" data-score="0" data-title="AI in 6G mobile networks">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI in 6G mobile networks <span class="tpill">14:50–15:35</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Benedek Kovács</span> · Edge Expert; Head of Technology and Innovation at Ericsson Hungary R&amp;D</div>
+      
+      <details><summary>abstract</summary><div class="desc">Will AI bring a new era to mobile netoworks? Why does the industry call 6G mobile networks AI native and why are we moving in that direction? Do we use AI to build the network or we use the network to enable AI applications? What are the main challenges and what is the current state of the industry answering them?</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ex00nro16sms9wrz0s" data-score="0" data-title="Code World Model: Building World Models for Computation">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Code World Model: Building World Models for Computation <span class="tpill">14:50–15:35</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Jacob Kahn</span> · Research Manager, Engineer at FAIR, Meta AI</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">FAIR / Meta; led Code World Model (32B open-weights, trained on execution traces). Research-deep.</span></div>
+      <details><summary>abstract</summary><div class="desc">Today, most neural models for code learn from code itself: sequences of tokens that capture syntax rather than computation. While this allows models to learn the shape of code, true reasoning about programs requires understanding execution and the dynamics of computation. In this talk, I’ll present a world-model approach to learning from code: one that incorporates data from program execution to implicitly predict behavior while generating code. The Code World Model (CWM) embodies this paradigm, opening new capabilities for reasoning and offering a foundation for future research and prototyping in AI-driven software systems.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ex00npo16szt07x92e" data-score="0" data-title="Solutions That Evolve: Building Self-Improving Systems with Genetic Algorithms">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Solutions That Evolve: Building Self-Improving Systems with Genetic Algorithms <span class="tpill">14:50–15:35</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Barry S. Stahl</span> · Co-Founder at AZGiveCamp</div>
+      
+      <details><summary>abstract</summary><div class="desc">Genetic algorithms &quot;learn&quot; to make better decisions by making continuous improvements in strategy based the fitness of that solution for survival. These algorithms, modeled after Darwinian evolution, can solve complex optimization problems across many domains - from resource allocation to network design to automated testing.
+
+In this talk we&#x27;ll define the DNA of our solutions, explore how to represent different types of problems in genetic terms, and examine the parameters that control how solutions evolve and improve. You&#x27;ll leave with practical knowledge of how to apply these powerful techniques to your own challenging problems.</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot">
+<div class="slot-head"><span class="slot-time">15:45–16:30</span><span class="slot-meta">8 sessions in parallel</span></div>
+<div class="cards">
+<div class="card must" data-id="cmpv0yini018yqs6ufb5w2n1m" data-score="96" data-title="From Harness Engineering to Convergence">
+  <div class="crow">
+    <span class="badge must">🔥 Must-see · 96</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Harness Engineering to Convergence <span class="tpill">15:45–16:30</span> <span class="loc lc-plat">Platform 2</span></p>
+      <div class="cmeta"><span class="spk">Gergely Hodicska</span> · Agentic Engineer, Fractional CTO/VPoE at Water Bear Consulting</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Co-founder of CraftHub (runs THIS conference); building Pairflow. &#x27;Harness → convergence&#x27; thesis.</span></div>
+      <details><summary>abstract</summary><div class="desc">This talk shares my journey building reliable agentic engineering workflows that deliver value in real production systems for real customers, grounded in proven engineering techniques, with special focus on the underdiscussed topic of scaling specifications.
+
+Takeaways
+- Building a harness is essential to fully leverage LLMs in creating value.
+- You need to enable convergence to have a harness producing great results.
+- You have to carefully design the guidance and feedback for your agents.
+- You need to have a continuous focus on building compounding impact.
+
+Details
+
+The real shift in agentic coding is not that models can write more code. The real shift is that we can delegate larger parts of the software delivery workflow, if we build the right system around them.
+
+In this talk, I share my journey building Pairflow, an experimental harness for reliable agentic engineering workflows. The core idea is simple: the model is not enough. To delegate more, we need more control: guidance, rails, state, checkpoints, evidence, feedback, recovery, and convergence loops.
+
+I introduce two key concepts: gradual consistency and convergence. LLMs are not reliable enough to produce great results in a single pass. Harness engineering provides the control needed to run reliable workflows, but convergence is what helps those workflows reach acceptable quality.
+
+I will walk through the patterns I learned splitting workflows into bounded work, using clear roles and boundaries, and making workflows repeatable and recoverable.
+
+Convergence is especially important when working with specifications. We talk a lot about SDD but much less about how to create high-quality specs that can drive reliable implementation. I will share techniques I developed to build convergence into specification workflows: creating better specs, reviewing them before implementation, and adding feedback loops that help decide whether a task should proceed, be refined, or be split further.
+
+I will also describe my general mental model for turning any repeated engineering workflow into a harness, with practical examples from real software work.
+
+Finally, we will look at why feedback loops matter beyond task execution: how similar ideas can be applied to code architecture, CI, and technical debt reduction.
+
+This is not a talk about magic autonomous agents. It is about engineering the harness around LLMs so that non-deterministic agents can reliably work inside deterministic workflows.
+
+The goal is not to remove human judgment, but to move more control into the system and make reliable delegation possible with more predictable outcomes.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7ey00nvo16sjui78czr" data-score="45" data-title="Engineering Agentic AI: Coordinated Agents on Structured Infrastructure">
+  <div class="crow">
+    <span class="badge high">★ High · 45</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Engineering Agentic AI: Coordinated Agents on Structured Infrastructure <span class="tpill">15:45–16:30</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <div class="cmeta"><span class="spk">Florin Coros</span> · Solution Architect | Technical Trainer at Endava</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI can generate code.But without structure, it generates entropy.As AI becomes embedded in development workflows, the critical question is no longer “Can agents write code?” but:Can they work together safely inside a real system?In this session, Florin Coroș presents an approach built on two complementary pillars: a development process explicitly designed for Agentic AI, and an Application Infrastructure that encodes Clean Architecture decisions directly in code.The development process defines how multiple Agent Types collaborate through iterative steps grouped into incremental phases, with clear approval gateways between them. This creates controlled progress, where each step is validated before moving forward. The Application Infrastructure provides the structural guardrails those agents operate within, enforcing separation of concerns, dependency direction, and modular boundaries.The focus is on the .NET and C# ecosystem, demonstrating how structured infrastructure and coordinated agents operate within real-world backend systems, using tools such as GitHub Copilot to enable and orchestrate agent-driven development.The result is not just speed, but consistency, predictability, and long-term system integrity.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmpfak2130009lm6wcqog0aot" data-score="44" data-title="Agents Need Names: Trust at the age of agentic web">
+  <div class="crow">
+    <span class="badge high">★ High · 44</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Agents Need Names: Trust at the age of agentic web <span class="tpill">15:45–16:30</span> <span class="loc lc-innov">Innovation stage</span></p>
+      <div class="cmeta"><span class="spk">Balázs Némethi</span> · Founder at Agent Community</div>
+      
+      <details><summary>abstract</summary><div class="desc">Every agent looks like an NPC — spawned in a harness, does the job, despawned. You don&#x27;t name your grep, and you shouldn&#x27;t.
+But some agents have a human behind them, quietly running them in the real world: always-on, holding stake, acting on someone&#x27;s behalf. OpenClaw just passed React&#x27;s ten-year record to become the most-starred software project on GitHub in about 60 days, and a whole class of agents now runs continuously instead of dying at the end of a session. Those stopped being NPCs. They&#x27;re players. And every economy in history has demanded the same thing of its players — down to the gold-farming bots in World of Warcraft, every one of which had a name: who are you?
+
+We&#x27;ve run this experiment before. WoW required a name for every character, then built discovery, reputation, and a real economy on top of it (the Armory was agent-discovery, shipped in 2007). The internet went from 172.217.14.206 to amazon.com, and only then did commerce show up. Agents are stuck at the IP-address stage: OpenClaw_5ff#cD33…@ixje.xyz — perfect for a machine, useless to the humans who still run the economy. It collapses to one word: &quot;Blake.&quot;
+
+This is the dependency stack the whole agent economy is being built on — name → discovery → trust → reputation → economic agency — and we&#x27;re pouring the top floors while skipping the ground one. Nobody&#x27;s cracked it end-to-end yet; honestly, we don&#x27;t have fully autonomous economic agents today, just the v1s. But they&#x27;re arriving fast, and every one hits the same wall: you can&#x27;t be an actor in an economy that can&#x27;t tell who you are. The irony is the ground floor is the easy part: we&#x27;ve named and verified machines on the internet for thirty years. We just never did it for the agents now living on it.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card high" data-id="cmowvh7ex00nso16svkd4fx0u" data-score="32" data-title="AI Won&#x27;t Eat Your Stack: Why Robust Components Matter More Than Ever">
+  <div class="crow">
+    <span class="badge high">★ High · 32</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> AI Won&#x27;t Eat Your Stack: Why Robust Components Matter More Than Ever <span class="tpill">15:45–16:30</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">Randy Shoup</span> · SVP Engineering at Thrive Market</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">SVP Eng Thrive Market; ex-eBay/Google/Stitch Fix. &#x27;Robust components matter MORE with AI, not less.&#x27;</span></div>
+      <details><summary>abstract</summary><div class="desc">AI is changing the structure and economics of SaaS and OSS. The myth: AI will let us one-shot everything from scratch, making SaaS, open-source libraries, and frameworks obsolete. The reality: AI makes good components and abstractions more valuable than ever before, because it unbundles the knowledge within them and lowers the cost of assembling them.
+Real-world problems are complex, and both nature and humans solve them by dividing them up in hierarchical, fractal, and iterated ways. Systems — biological, mechanical, or digital — are built on layers of robust components, which themselves encode the results of earlier feedback loops. Abstraction, encapsulation, and modularity aren&#x27;t just concessions to limited human cognition; they are part of the physics of successful systems. There is no compression algorithm for experience, and AI makes components that encode experience more valuable, not less. 
+This talk offers concrete predictions about how AI will reshape the software landscape and make the fundamental principles of systems and software engineering even more required:For SaaS: Value shifts from simple glue to complex encoded domain knowledge, composability, efficiency, and operational expertise. Procurement collapses from enterprise sales cycles to agent-driven assembly of components. For OSS: Trivial libraries get replaced and forks abound, while projects with robust test suites and supply-chain provenance provide the real value. For Software Engineering: Teams shrink and roles widen. TDD / BDD, compiled and strongly-typed languages, observability, and progressive delivery all become more important. Come for the myth-busting, stay for the practical framework.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card rel" data-id="cmpoicir1004dpa6p961s4i3e" data-score="18" data-title="Craft Still Matters">
+  <div class="crow">
+    <span class="badge rel">◆ Relevant · 18</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Craft Still Matters <span class="tpill">15:45–16:30</span> <span class="loc lc-telekom">Telekom stage</span></p>
+      <div class="cmeta"><span class="spk">Gregor Riegler</span> · Technical Coach and Principal Engineer at Tricentis</div>
+      <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Tricentis technical coach; &#x27;Augmented Coding — A Pattern Language.&#x27; Refactoring discipline matters MORE with agents.</span></div>
+      <details><summary>abstract</summary><div class="desc">As we move toward a world where coding agents do more of the work, what does that actually mean for software craft?
+Do we still need it? Or can we just go with the Vibes?
+
+It turns out that you are still only as fast as your codebase is clean.
+And one does not simply make an LLM generate code that it can also maintain.
+
+Through stories from real work with coding agents, you&#x27;ll see how craft beats complexity, and why making things extremely small and verifiable is what keeps agent-generated code maintainable, and makes working with agents enjoyable.
+
+Software craft is not nostalgia. It is what makes AI-augmented development work.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card maybe" data-id="cmowvh7ex00nuo16svmr0l9g9" data-score="10" data-title="Building Your AI Security Framework">
+  <div class="crow">
+    <span class="badge maybe">· Maybe · 10</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Building Your AI Security Framework <span class="tpill">15:45–16:30</span> <span class="loc lc-focus">Focus Platform</span></p>
+      <div class="cmeta"><span class="spk">Adam Litter</span> · Machine Learning &amp; Data Engineering Consultant at DATAPAO</div>
+      
+      <details><summary>abstract</summary><div class="desc">AI is transforming how we build software, but it also introduces new ways to leak data, break systems and bypass controls. This talk outlines how to implement a simple AI Security Framework with concrete risks, attack examples and practices your data, AI and security teams can apply today.</div></details>
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ey00nyo16s63mwe5nw" data-score="0" data-title="Inside the Brain of the Top 1% AI Companies">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Inside the Brain of the Top 1% AI Companies <span class="tpill">15:45–16:30</span> <span class="loc lc-green">Green stage</span></p>
+      <div class="cmeta"><span class="spk">Márton Szabó</span> · Talent Partner at The Tech Talent Co.</div>
+      
+      
+    </div>
+  </div>
+</div>
+<div class="card low" data-id="cmowvh7ey00nxo16s27p8794m" data-score="0" data-title="Journaling with AI">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Journaling with AI <span class="tpill">15:45–16:30</span> <span class="loc lc-purple">Purple stage</span></p>
+      <div class="cmeta"><span class="spk">Llewellyn Falco</span> · Founder, Consultant at Spun Laboratories</div>
+      
+      
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="cutoff">✈ Your BA869 cutoff — you leave the venue ~16:30. Below is after you’ve gone (raffle + closing only).</div>
+<div class="slot gone">
+<div class="slot-head"><span class="slot-time">16:30–16:45</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmptfdfw900bpqs6u4uoom5gp" data-score="0" data-title="Raffle">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Raffle <span class="tpill">16:30–16:45</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">—</span></div>
+      
+      <details><summary>abstract</summary><div class="desc">🎊 It&#x27;s raining prizes!
+
+We have many ways of qualifying for prizes during the conference. Visit every booth for a chance to win one of our epic prizes!</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="slot gone">
+<div class="slot-head"><span class="slot-time">16:45–17:00</span><span class="slot-meta">1 session in parallel</span></div>
+<div class="cards">
+<div class="card low" data-id="cmptfeuie00bqqs6uv2cs3a4k" data-score="0" data-title="Closing ceremony">
+  <div class="crow">
+    <span class="badge low"> Low fit · 0</span>
+    <div style="flex:1">
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Closing ceremony <span class="tpill">16:45–17:00</span> <span class="loc lc-main">Main stage</span></p>
+      <div class="cmeta"><span class="spk">—</span></div>
+      
+      <details><summary>abstract</summary><div class="desc">Our last train of thought has arrived at the station, and thus we must say goodbye. Join us for the final goodbye of Craft Conference 2026 and be a part of our group photo! 📸👥
+
+See you next year!</div></details>
+    </div>
+  </div>
+</div>
+</div></div>
+</div></body></html>
