@@ -90,6 +90,13 @@ h2.day{font-size:20px;margin:38px 0 4px;padding-top:14px}
 .mp-fork{margin-top:7px;padding:8px 10px;border:1px dashed var(--high);border-radius:8px;
   background:rgba(255,180,67,.06);font-size:12.5px;color:var(--high);font-weight:600}
 .mp-fork .opt{color:var(--txt);font-weight:600}
+.mp-today{display:inline-block;font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:#fff;background:var(--accent);border-radius:5px;padding:1px 7px;margin-left:8px;letter-spacing:.5px;vertical-align:middle}
+.mp-past{margin-top:24px;border-top:1px solid var(--line);padding-top:6px;opacity:.72}
+.mp-past summary{cursor:pointer;font-size:12.5px;font-weight:700;color:var(--dim);padding:8px 0;list-style:none}
+.mp-past summary::-webkit-details-marker{display:none}
+.mp-past[open]{opacity:.85}
+.mp-past[open] summary{color:var(--accent)}
 .tpill{display:inline-block;font:600 11px ui-monospace,SFMono-Regular,Menlo,monospace;
   color:var(--accent);background:var(--panel2);border-radius:5px;padding:1px 7px;
   margin-left:4px;vertical-align:middle}
@@ -178,7 +185,14 @@ details[open] summary{color:var(--dim);margin-bottom:6px}
 <nav class="days"><a href="#myday">My picks</a><a href="#thu">Thu</a><a href="#fri">Fri</a></nav>
 <div class="wrap">
 <section id="myday"><h2 class="hero-h">⭐ My schedule</h2>
-<div class="mp-day">Thu Jun 04</div>
+<div class="mp-day">Fri Jun 05 <span class="mp-today">● TODAY</span></div>
+<div class="mp-row"><div class="mp-time">09:10</div><div class="mp-body"><div class="mp-title">Forest &amp; Desert &amp; Genie <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Kent Beck</div></div></div>
+<div class="mp-row"><div class="mp-time">10:30</div><div class="mp-body"><div class="mp-title">What Do I Do With My Developers? Product Ownership, Agentic Craft, and Shifting Expectations <span class="loc lc-vip">Tech Leaders&#x27; Lounge</span></div><div class="mp-sub">Daniel Terhorst-North, Reuven Cohen, Gojko Adzic, Emese Pogácsás, Péter Szász</div></div></div>
+<div class="mp-row"><div class="mp-time">11:30</div><div class="mp-body"><div class="mp-title">Governance Without the Red Tape <span class="loc lc-plat">Platform 2</span></div><div class="mp-sub">Sarah Wells</div></div></div>
+<div class="mp-row"><div class="mp-time">13:45</div><div class="mp-body"><div class="mp-title">Staying at the Exponential: Mastering Claude Code <span class="loc lc-yellow">Yellow stage</span></div><div class="mp-sub">Kashyap Murali</div></div></div>
+<div class="mp-row"><div class="mp-time">14:50</div><div class="mp-body"><div class="mp-title">Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Aaron Erickson</div></div></div>
+<div class="mp-row"><div class="mp-time">15:45</div><div class="mp-body"><div class="mp-title">From Harness Engineering to Convergence <span class="loc lc-plat">Platform 2</span></div><div class="mp-sub">Gergely Hodicska</div></div></div>
+<details class="mp-past"><summary>✓ Thu Jun 04 — done (tap to review)</summary>
 <div class="mp-row"><div class="mp-time">09:40</div><div class="mp-body"><div class="mp-title">Slow down to speed up <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Gergely Orosz</div></div></div>
 <div class="mp-row"><div class="mp-time">11:00</div><div class="mp-body"><div class="mp-title">2 starred — decide on the spot</div><div class="mp-sub">Matthew Clark / Reuven Cohen</div><div class="mp-fork">⚖ <span class="opt">Architecture in the Age of Autonomous Code</span> <span class="loc lc-purple">Purple stage</span> &nbsp;·&nbsp; <span class="opt">The Shift to Agentic AI</span> <span class="loc lc-main">Main stage</span></div></div></div>
 <div class="mp-row"><div class="mp-time">12:00</div><div class="mp-body"><div class="mp-title">How to find bugs in systems that don&#x27;t exist <span class="loc lc-purple">Purple stage</span></div><div class="mp-sub">Hillel Wayne</div></div></div>
@@ -186,8 +200,7 @@ details[open] summary{color:var(--dim);margin-bottom:6px}
 <div class="mp-row"><div class="mp-time">14:55</div><div class="mp-body"><div class="mp-title">2 starred — decide on the spot</div><div class="mp-sub">Mark Richards / Ivan Petrović</div><div class="mp-fork">⚖ <span class="opt">Architecture AntiPatterns and Pitfalls</span> <span class="loc lc-plat">Platform 2</span> &nbsp;·&nbsp; <span class="opt">Is it really that expensive to build an AI system today?</span> <span class="loc lc-innov">Innovation stage</span></div></div></div>
 <div class="mp-row"><div class="mp-time">16:00</div><div class="mp-body"><div class="mp-title">2 starred — decide on the spot</div><div class="mp-sub">Ryan Lopopolo / Neal Ford</div><div class="mp-fork">⚖ <span class="opt">Harness Engineering</span> <span class="loc lc-main">Main stage</span> &nbsp;·&nbsp; <span class="opt">Neal Ford&#x27;s Talk</span> <span class="loc lc-purple">Purple stage</span></div></div></div>
 <div class="mp-row"><div class="mp-time">16:55</div><div class="mp-body"><div class="mp-title">Am I holding this right? <span class="loc lc-main">Main stage</span></div><div class="mp-sub">Daniel Terhorst-North</div></div></div>
-<div class="mp-day">Fri Jun 05</div>
-<div class="mp-row"><div class="mp-time">10:30</div><div class="mp-body"><div class="mp-title">What Do I Do With My Developers? Product Ownership, Agentic Craft, and Shifting Expectations <span class="loc lc-vip">Tech Leaders&#x27; Lounge</span></div><div class="mp-sub">Daniel Terhorst-North, Reuven Cohen, Gojko Adzic, Emese Pogácsás, Péter Szász</div></div></div>
+</details>
 </section>
 <h2 class="hero-h" style="margin-top:36px">📋 Full schedule</h2>
 <h2 class="day" id="thu">Thu Jun 04</h2>
@@ -983,11 +996,11 @@ What the session covers:
 <div class="slot">
 <div class="slot-head"><span class="slot-time">09:10–10:10</span><span class="slot-meta">1 session in parallel</span></div>
 <div class="cards">
-<div class="card rel" data-id="cmowvh7eu00n3o16saucvziit" data-score="18" data-title="Forest &amp; Desert &amp; Genie">
+<div class="card rel mine" data-id="cmowvh7eu00n3o16saucvziit" data-score="18" data-title="Forest &amp; Desert &amp; Genie">
   <div class="crow">
     <span class="badge rel">◆ Relevant · 18</span>
     <div style="flex:1">
-      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Forest &amp; Desert &amp; Genie <span class="tpill">09:10–10:10</span> <span class="loc lc-main">Main stage</span></p>
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Forest &amp; Desert &amp; Genie <span class="tpill">09:10–10:10</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
       <div class="cmeta"><span class="spk">Kent Beck</span> · Principal at The Critical Hire</div>
       <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Creator of XP/TDD; now dogfooding &#x27;augmented coding&#x27; (agent = a junior with no taste) vs &#x27;vibe coding.&#x27;</span></div>
       <details><summary>abstract</summary><div class="desc">In the Forest &amp; Desert, Bethany Andres-Beck identifies two stable attractors for software development:
@@ -1202,11 +1215,11 @@ Register here: https://luma.com/9g5u67tp</div></details>
     </div>
   </div>
 </div>
-<div class="card high" data-id="cmowvh7ev00nco16szb89z7j0" data-score="38" data-title="Governance Without the Red Tape">
+<div class="card high mine" data-id="cmowvh7ev00nco16szb89z7j0" data-score="38" data-title="Governance Without the Red Tape">
   <div class="crow">
     <span class="badge high">★ High · 38</span>
     <div style="flex:1">
-      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Governance Without the Red Tape <span class="tpill">11:30–12:15</span> <span class="loc lc-plat">Platform 2</span></p>
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Governance Without the Red Tape <span class="tpill">11:30–12:15</span> <span class="loc lc-plat">Platform 2</span> <span class="tag mine">★ MY PICK</span></p>
       <div class="cmeta"><span class="spk">Sarah Wells</span> · Independent Tech Consultant, Author of Enabling Microservice Success</div>
       <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Ex-FT (drove 12 → 20,000+ releases/yr); author Enabling Microservice Success. Lightweight governance via automated guardrails.</span></div>
       <details><summary>abstract</summary><div class="desc">When you hear “governance,” you might think of red tape, bureaucracy, or someone telling you what you can’t do. But real governance is about alignment and reducing technical risk. And that matters more than ever.
@@ -1329,11 +1342,11 @@ You&#x27;ll leave with concrete, transferable patterns for deploying safely, val
     </div>
   </div>
 </div>
-<div class="card must" data-id="cmowvh7ew00njo16s9u176ld2" data-score="68" data-title="Staying at the Exponential: Mastering Claude Code">
+<div class="card must mine" data-id="cmowvh7ew00njo16s9u176ld2" data-score="68" data-title="Staying at the Exponential: Mastering Claude Code">
   <div class="crow">
     <span class="badge must">🔥 Must-see · 68</span>
     <div style="flex:1">
-      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Staying at the Exponential: Mastering Claude Code <span class="tpill">13:45–14:30</span> <span class="loc lc-yellow">Yellow stage</span></p>
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Staying at the Exponential: Mastering Claude Code <span class="tpill">13:45–14:30</span> <span class="loc lc-yellow">Yellow stage</span> <span class="tag mine">★ MY PICK</span></p>
       <div class="cmeta"><span class="spk">Kashyap Murali</span> · Claude Code Team Member at Anthropic</div>
       <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Anthropic, Claude Code team — first-party insider on the tool you use daily; expect CLAUDE.md / subagents / skills workflow patterns.</span></div>
       
@@ -1489,11 +1502,11 @@ The session is aimed at builders, engineers, and product people who want a more 
     </div>
   </div>
 </div>
-<div class="card rel" data-id="cmowvh7ex00nno16siid59qc2" data-score="26" data-title="Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw">
+<div class="card rel mine" data-id="cmowvh7ex00nno16siid59qc2" data-score="26" data-title="Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw">
   <div class="crow">
     <span class="badge rel">◆ Relevant · 26</span>
     <div style="flex:1">
-      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw <span class="tpill">14:50–15:35</span> <span class="loc lc-main">Main stage</span></p>
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> Tools for Certainty, Claws for Discovery: Lessons from Building NemoClaw <span class="tpill">14:50–15:35</span> <span class="loc lc-main">Main stage</span> <span class="tag mine">★ MY PICK</span></p>
       <div class="cmeta"><span class="spk">Aaron Erickson</span> · Author, AI Lab Senior Manager at NVIDIA</div>
       <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">NVIDIA AI Lab; built NemoClaw. Pairs deterministic tools (certainty) with probabilistic agents (discovery).</span></div>
       <details><summary>abstract</summary><div class="desc">AI agents are powerful because they are not just deterministic software components. They can explore, investigate, synthesize, recover, and adapt. That is exactly what makes them useful, and exactly what makes them hard to trust.
@@ -1562,11 +1575,11 @@ In this talk we&#x27;ll define the DNA of our solutions, explore how to represen
 <div class="slot">
 <div class="slot-head"><span class="slot-time">15:45–16:30</span><span class="slot-meta">8 sessions in parallel</span></div>
 <div class="cards">
-<div class="card must" data-id="cmpv0yini018yqs6ufb5w2n1m" data-score="96" data-title="From Harness Engineering to Convergence">
+<div class="card must mine" data-id="cmpv0yini018yqs6ufb5w2n1m" data-score="96" data-title="From Harness Engineering to Convergence">
   <div class="crow">
     <span class="badge must">🔥 Must-see · 96</span>
     <div style="flex:1">
-      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Harness Engineering to Convergence <span class="tpill">15:45–16:30</span> <span class="loc lc-plat">Platform 2</span></p>
+      <p class="ctitle"><span class="edited-dot" title="you edited this"></span> From Harness Engineering to Convergence <span class="tpill">15:45–16:30</span> <span class="loc lc-plat">Platform 2</span> <span class="tag mine">★ MY PICK</span></p>
       <div class="cmeta"><span class="spk">Gergely Hodicska</span> · Agentic Engineer, Fractional CTO/VPoE at Water Bear Consulting</div>
       <div class="intel"><span class="intel-tag">📋 intel</span><span class="intel-txt">Co-founder of CraftHub (runs THIS conference); building Pairflow. &#x27;Harness → convergence&#x27; thesis.</span></div>
       <details><summary>abstract</summary><div class="desc">This talk shares my journey building reliable agentic engineering workflows that deliver value in real production systems for real customers, grounded in proven engineering techniques, with special focus on the underdiscussed topic of scaling specifications.
